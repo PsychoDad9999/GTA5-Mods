@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="framework">
+      <UniqueIdentifier>{108b29f4-6472-4116-b1f1-3842215ce11c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\system">
+      <UniqueIdentifier>{d975423c-4199-4e5a-831b-3d206d8c4af3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\diagnostics">
+      <UniqueIdentifier>{abe1dc75-17cf-4e8a-b73d-7847a2d22e32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\hud">
+      <UniqueIdentifier>{29ec8ee5-5fdd-4f5a-a505-92db4e1f7682}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\game">
+      <UniqueIdentifier>{a89d27a5-3710-4e07-8186-27816231ef32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\input">
+      <UniqueIdentifier>{6c11e0eb-a044-4f91-a196-5c74422bada8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\audio">
+      <UniqueIdentifier>{cab49f0f-a46d-4396-b992-790eaa4cb881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\missions">
+      <UniqueIdentifier>{c3fa8915-c279-40e5-b5f7-16290c0db052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\memory">
+      <UniqueIdentifier>{8ccb486f-8a57-43cc-bb9c-9febfd4abeca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="framework\world">
+      <UniqueIdentifier>{7b304239-125d-49e6-afc7-8bcb5784379c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SHV">
+      <UniqueIdentifier>{CA294FA0-DB86-494B-84F2-106EEFEFF2A7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SHV\inc\main.h">
+      <Filter>SHV</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SHV\inc\enums.h">
+      <Filter>SHV</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SHV\inc\natives.h">
+      <Filter>SHV</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SHV\inc\types.h">
+      <Filter>SHV</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\diagnostics\debugConsole.h">
+      <Filter>framework\diagnostics</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\dateTime.h">
+      <Filter>framework\system</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\hashKey.h">
+      <Filter>framework\system</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\hud\notifications.h">
+      <Filter>framework\hud</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\hud\text.h">
+      <Filter>framework\hud</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\game\gameVersion.h">
+      <Filter>framework\game</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\game\globals.h">
+      <Filter>framework\game</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\input\keyboard.h">
+      <Filter>framework\input</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\input\keyboardMapper.h">
+      <Filter>framework\input</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\input\keydefines.h">
+      <Filter>framework\input</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\system\module.h">
+      <Filter>framework\system</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\audio\audioMemoryResource.h">
+      <Filter>framework\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\audio\audioPlayer.h">
+      <Filter>framework\audio</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\missions\randomEvents.h">
+      <Filter>framework\missions</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\hud\blip.h">
+      <Filter>framework\hud</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\memory\memory.h">
+      <Filter>framework\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\world\player.h">
+      <Filter>framework\world</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\world\world.h">
+      <Filter>framework\world</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\hud\helpMessages.h">
+      <Filter>framework\hud</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\memory\fastmemory.h">
+      <Filter>framework\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\world\model.h">
+      <Filter>framework\world</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\world\rope.h">
+      <Filter>framework\world</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework\diagnostics\debugConsole.cpp">
+      <Filter>framework\diagnostics</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\dateTime.cpp">
+      <Filter>framework\system</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\hashKey.cpp">
+      <Filter>framework\system</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\hud\notifications.cpp">
+      <Filter>framework\hud</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\hud\text.cpp">
+      <Filter>framework\hud</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\game\globals.cpp">
+      <Filter>framework\game</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\input\keyboard.cpp">
+      <Filter>framework\input</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\input\keyboardMapper.cpp">
+      <Filter>framework\input</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\module.cpp">
+      <Filter>framework\system</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\audio\audioMemoryResource.cpp">
+      <Filter>framework\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\audio\audioPlayer.cpp">
+      <Filter>framework\audio</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\missions\randomEvents.cpp">
+      <Filter>framework\missions</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\hud\blip.cpp">
+      <Filter>framework\hud</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\memory\memory.cpp">
+      <Filter>framework\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\world\world.cpp">
+      <Filter>framework\world</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\hud\helpMessages.cpp">
+      <Filter>framework\hud</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\memory\fastmemory.cpp">
+      <Filter>framework\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\world\model.cpp">
+      <Filter>framework\world</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\world\rope.cpp">
+      <Filter>framework\world</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="framework\audio\audioMemoryResource.cpp" />
+    <ClCompile Include="framework\audio\audioPlayer.cpp" />
+    <ClCompile Include="framework\hud\blip.cpp" />
+    <ClCompile Include="framework\hud\helpMessages.cpp" />
+    <ClCompile Include="framework\hud\notifications.cpp" />
+    <ClCompile Include="framework\hud\text.cpp" />
+    <ClCompile Include="framework\input\keyboard.cpp" />
+    <ClCompile Include="framework\input\keyboardMapper.cpp" />
+    <ClCompile Include="framework\memory\fastmemory.cpp" />
+    <ClCompile Include="framework\memory\memory.cpp" />
+    <ClCompile Include="framework\missions\randomEvents.cpp" />
+    <ClCompile Include="framework\system\dateTime.cpp" />
+    <ClCompile Include="framework\diagnostics\debugConsole.cpp" />
+    <ClCompile Include="framework\system\hashKey.cpp" />
+    <ClCompile Include="framework\game\globals.cpp" />
+    <ClCompile Include="framework\system\module.cpp" />
+    <ClCompile Include="framework\world\model.cpp" />
+    <ClCompile Include="framework\world\rope.cpp" />
+    <ClCompile Include="framework\world\world.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework\audio\audioMemoryResource.h" />
+    <ClInclude Include="framework\audio\audioPlayer.h" />
+    <ClInclude Include="framework\game\gameVersion.h" />
+    <ClInclude Include="framework\game\globals.h" />
+    <ClInclude Include="framework\hud\blip.h" />
+    <ClInclude Include="framework\hud\helpMessages.h" />
+    <ClInclude Include="framework\hud\notifications.h" />
+    <ClInclude Include="framework\hud\text.h" />
+    <ClInclude Include="framework\input\keyboard.h" />
+    <ClInclude Include="framework\input\keyboardMapper.h" />
+    <ClInclude Include="framework\input\keydefines.h" />
+    <ClInclude Include="framework\memory\fastmemory.h" />
+    <ClInclude Include="framework\memory\memory.h" />
+    <ClInclude Include="framework\missions\randomEvents.h" />
+    <ClInclude Include="framework\system\hashKey.h" />
+    <ClInclude Include="framework\system\module.h" />
+    <ClInclude Include="framework\world\model.h" />
+    <ClInclude Include="framework\world\player.h" />
+    <ClInclude Include="framework\world\rope.h" />
+    <ClInclude Include="framework\world\world.h" />
+    <ClInclude Include="..\SHV\inc\main.h" />
+    <ClInclude Include="..\SHV\inc\enums.h" />
+    <ClInclude Include="..\SHV\inc\natives.h" />
+    <ClInclude Include="..\SHV\inc\types.h" />
+    <ClInclude Include="framework\system\dateTime.h" />
+    <ClInclude Include="framework\diagnostics\debugConsole.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{94A13F4E-DF0A-49C2-A7F9-8186904137DD}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>SHVX</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141_xp</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>build\bin\$(Configuration)\</OutDir>
+    <IntDir>build\obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;SHVX_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ConformanceMode>false</ConformanceMode>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <AdditionalIncludeDirectories>$(ProjectDir);</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\SHV\lib\ScriptHookV.lib;%(AdditionalOptions)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>Kernel32.lib;Winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
