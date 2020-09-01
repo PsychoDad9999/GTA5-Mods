@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="dbg">
+      <UniqueIdentifier>{FF22292A-8CF8-4A24-BC11-4BFA6B968051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="settings">
+      <UniqueIdentifier>{7ABBDFE6-BB96-4C3A-BE18-4B8E6794175A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{A62E25AE-02E8-4B22-9B0B-E48EDB825849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{85bff988-5230-4dcb-9c11-77dbeee7e088}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\settings\settings.cpp">
+      <Filter>settings</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\worldTransform.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\stringUtils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\typeConverter.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\fileHelper.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dbg\debugFrameOverlay.cpp">
+      <Filter>dbg</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dllmain.cpp">
+    </ClCompile>
+    <ClCompile Include="src\script.cpp">
+    </ClCompile>
+    <ClCompile Include="src\package\hiddenPackagesManager.cpp" />
+    <ClCompile Include="src\time\timeHelper.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\settings\settings.h">
+      <Filter>settings</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\worldTransform.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\stringUtils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\typeConverter.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\fileHelper.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dbg\debugFrameOverlay.h">
+      <Filter>dbg</Filter>
+    </ClInclude>
+    <ClInclude Include="src\package\hiddenPackage.h" />
+    <ClInclude Include="src\package\hiddenPackagesManager.h" />
+    <ClInclude Include="src\time\timeHelper.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\script.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="config\UnderwaterPickups.ini">
+      <Filter>config</Filter>
+    </None>
+  </ItemGroup>
+</Project>

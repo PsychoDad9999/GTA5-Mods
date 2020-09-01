@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shvx", "SHVX\shvx.vcxproj", "{94A13F4E-DF0A-49C2-A7F9-8186904137DD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnderwaterPickups", "UnderaterPickups\UnderwaterPickups.vcxproj", "{A9E60842-6970-41B7-BA3B-8871F2FC822D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Release|x64 = Release|x64
@@ -12,6 +14,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{94A13F4E-DF0A-49C2-A7F9-8186904137DD}.Release|x64.ActiveCfg = Release|x64
 		{94A13F4E-DF0A-49C2-A7F9-8186904137DD}.Release|x64.Build.0 = Release|x64
+		{A9E60842-6970-41B7-BA3B-8871F2FC822D}.Release|x64.ActiveCfg = Release|x64
+		{A9E60842-6970-41B7-BA3B-8871F2FC822D}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
