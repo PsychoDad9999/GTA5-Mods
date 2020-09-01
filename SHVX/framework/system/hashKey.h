@@ -2,7 +2,7 @@
 
 #include <stdint.h>
 
-#include "../SHV/inc/types.h"
+#include "inc/types.h"
 
 // ----------------------------------------------------------------------------
 

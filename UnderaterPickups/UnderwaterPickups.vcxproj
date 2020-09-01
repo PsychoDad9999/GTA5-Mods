@@ -31,21 +31,21 @@
     <ClInclude Include="src\script.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="config\UnderwaterPickups.ini">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SHVX\shvx.vcxproj">
       <Project>{94a13f4e-df0a-49c2-a7f9-8186904137dd}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="config\UnderwaterPickups.ini">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{A9E60842-6970-41B7-BA3B-8871F2FC822D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>UnderwaterPickups</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>7.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -67,8 +67,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.asi</TargetExt>
-    <OutDir>..\build\bin\$(Configuration)\</OutDir>
-    <IntDir>..\build\obj\$(Configuration)\</IntDir>
+    <OutDir>build\bin\$(Configuration)\</OutDir>
+    <IntDir>build\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -84,7 +84,7 @@
       <ConformanceMode>false</ConformanceMode>
       <FloatingPointModel>Fast</FloatingPointModel>
       <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\SHV\inc;$(ProjectDir)..\SHVX;$(ProjectDir)src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\SHV;$(ProjectDir)..\SHVX;$(ProjectDir)src</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

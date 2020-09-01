@@ -2,7 +2,7 @@
 
 #include "script.h"
 
-#include "natives.h"
+#include "inc/natives.h"
 #include "framework/system/dateTime.h"
 #include "framework/system/hashKey.h"
 #include "framework/hud/notifications.h"

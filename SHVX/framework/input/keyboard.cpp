@@ -2,7 +2,7 @@
 
 #include "keyboard.h"
 
-#include "../SHV/inc/main.h"
+#include "inc/main.h"
 
 #include <stdio.h>
 

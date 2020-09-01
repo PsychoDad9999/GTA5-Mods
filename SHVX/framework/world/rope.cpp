@@ -4,8 +4,8 @@
 
 #include <chrono>
 
-#include "../SHV/inc/natives.h"
-#include "framework/world/world.h"
+#include "inc/natives.h"
+#include "world.h"
 
 // ----------------------------------------------------------------------------
 

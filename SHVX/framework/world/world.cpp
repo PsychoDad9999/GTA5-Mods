@@ -2,7 +2,7 @@
 
 #include "world.h"
 
-#include "../SHV/inc/natives.h"
+#include "inc/natives.h"
 
 #include <math.h>
 

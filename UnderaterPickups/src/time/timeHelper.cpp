@@ -2,7 +2,7 @@
 
 #include "timeHelper.h"
 
-#include "natives.h"
+#include "inc/natives.h"
 
 #include <ctime>
 

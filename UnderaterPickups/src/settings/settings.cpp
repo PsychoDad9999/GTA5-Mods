@@ -5,8 +5,8 @@
 #include <string>
 
 #include "framework/system/module.h"
-#include "utils\typeConverter.h"
-#include "utils\fileHelper.h"
+#include "utils/typeConverter.h"
+#include "utils/fileHelper.h"
 
 // ----------------------------------------------------------------------------
 /// <summery>Load settings from ini file</summery>

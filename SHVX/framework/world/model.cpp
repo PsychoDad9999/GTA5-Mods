@@ -4,7 +4,7 @@
 
 #include <chrono>
 
-#include "../SHV/inc/natives.h"
+#include "inc/natives.h"
 
 // ----------------------------------------------------------------------------
 

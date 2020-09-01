@@ -4,12 +4,12 @@
 
 #include <cstdio>
 
-#include "natives.h"
+#include "inc/natives.h"
 #include "framework/system/dateTime.h"
 #include "framework/system/hashkey.h"
 #include "framework/hud/text.h"
 
-#include "time\timeHelper.h"
+#include "time/timeHelper.h"
 
 
 // ----------------------------------------------------------------------------

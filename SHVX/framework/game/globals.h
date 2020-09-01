@@ -4,7 +4,7 @@
 
 #include <Windows.h>
 
-#include "framework/game/gameVersion.h"
+#include "gameVersion.h"
 
 // ----------------------------------------------------------------------------
 

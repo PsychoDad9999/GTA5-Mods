@@ -2,7 +2,7 @@
 
 #include "text.h"
 
-#include "../SHV/inc/natives.h"
+#include "inc/natives.h"
 
 // ----------------------------------------------------------------------------
 /// <summery>Draw a text on the current frame.</summery>

@@ -5,7 +5,7 @@
 #include <Windows.h>
 #include <map>
 
-#include "framework/audio/audioMemoryResource.h"
+#include "audioMemoryResource.h"
 
 // ----------------------------------------------------------------------------
 

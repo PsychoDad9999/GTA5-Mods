@@ -69,8 +69,8 @@
     <ClInclude Include="src\script.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="config\UnderwaterPickups.ini">
+    <CopyFileToFolders Include="config\UnderwaterPickups.ini">
       <Filter>config</Filter>
-    </None>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

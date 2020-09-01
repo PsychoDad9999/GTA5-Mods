@@ -2,7 +2,7 @@
 
 #include <windows.h>
 
-#include "main.h"
+#include "inc/main.h"
 #include "script.h"
 
 
