@@ -3,8 +3,7 @@
 #include "hiddenPackagesManager.h"
 
 #include "framework/hud/blip.h"
-
-#include "utils/worldTransform.h"
+#include "framework/world/world.h"
 
 // ----------------------------------------------------------------------------
 
@@ -64,7 +63,7 @@ HiddenPackage* HiddenPackagesManager::getPackageWithClosestActivationPoint(Vecto
 	
 	for (int arrayIndex = 0; arrayIndex < m_hiddenPackages.size() ; arrayIndex++)
 	{
-		double distance = Transform::getDistance(location, m_hiddenPackages[arrayIndex].scriptActivationLocation);
+		double distance = World::getDistance(location, m_hiddenPackages[arrayIndex].scriptActivationLocation, false);
 
 		if (minIdx == -1)
 		{

@@ -18,9 +18,6 @@
     <ClCompile Include="src\settings\settings.cpp">
       <Filter>settings</Filter>
     </ClCompile>
-    <ClCompile Include="src\utils\worldTransform.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
     <ClCompile Include="src\utils\stringUtils.cpp">
       <Filter>utils</Filter>
     </ClCompile>
@@ -45,9 +42,6 @@
   <ItemGroup>
     <ClInclude Include="src\settings\settings.h">
       <Filter>settings</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\worldTransform.h">
-      <Filter>utils</Filter>
     </ClInclude>
     <ClInclude Include="src\utils\stringUtils.h">
       <Filter>utils</Filter>

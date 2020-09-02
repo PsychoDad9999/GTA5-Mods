@@ -8,7 +8,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\settings\settings.cpp" />
-    <ClCompile Include="src\utils\worldTransform.cpp" />
     <ClCompile Include="src\utils\stringUtils.cpp" />
     <ClCompile Include="src\utils\typeConverter.cpp" />
     <ClCompile Include="src\utils\fileHelper.cpp" />
@@ -20,7 +19,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\settings\settings.h" />
-    <ClInclude Include="src\utils\worldTransform.h" />
     <ClInclude Include="src\utils\stringUtils.h" />
     <ClInclude Include="src\utils\typeConverter.h" />
     <ClInclude Include="src\utils\fileHelper.h" />

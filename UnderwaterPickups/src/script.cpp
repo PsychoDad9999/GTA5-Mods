@@ -10,8 +10,8 @@
 #include "framework/diagnostics/debugConsole.h"
 #include "framework/game/gameVersion.h"
 #include "framework/game/globals.h"
+#include "framework/world/world.h"
 
-#include "utils/worldTransform.h"
 #include "settings/settings.h"
 #include "dbg/debugFrameOverlay.h"
 #include "time/timeHelper.h"
@@ -122,7 +122,7 @@ void handleDelayedRespawn(Vector3 playerLocation)
 
 		if (isScriptRunning)
 		{
-			double distanceToPackageSpawn = Transform::getDistance(closestPackage->packageLocation, playerLocation);
+			double distanceToPackageSpawn = World::getDistance(closestPackage->packageLocation, playerLocation, false);
 
 			if (distanceToPackageSpawn < 20)  // 20m radius, track package pickup
 			{
@@ -205,7 +205,7 @@ void update()
 	}
 	else
 	{
-		handleDelayedRespawn(Transform::getWorldPosition(playerPed));
+		handleDelayedRespawn(World::getPosition(playerPed));
 	}	
 }
 
