@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="dbg">
+      <UniqueIdentifier>{FF22292A-8CF8-4A24-BC11-4BFA6B968051}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\script.cpp" />
+    <ClCompile Include="src\dbg\debugFrameOverlay.cpp">
+      <Filter>dbg</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\dbg\debugFrameOverlay.h">
+      <Filter>dbg</Filter>
+    </ClInclude>
+    <ClInclude Include="src\script.h" />
+  </ItemGroup>
+</Project>
