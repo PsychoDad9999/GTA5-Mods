@@ -1,3 +1,7 @@
 # Fixed Special Abilities
 
-Fixes the glitches related to the special abilities in story mode.
+|| Description      |
+|------------|-------------|
+| <img src="Preview.png" width="250"> | Fixes the glitches related to the special abilities in story mode. | 
+
+
