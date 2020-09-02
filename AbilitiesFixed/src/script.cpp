@@ -14,6 +14,7 @@
 #include "framework/input/keyboard.h"
 #include "framework/input/keydefines.h"
 #include "framework/memory/memory.h"
+#include "framework/system/math.h"
 
 #include "dbg/debugFrameOverlay.h"
 
@@ -48,29 +49,13 @@ const char* SPECIAL_ABILITY_MASK = "xxxxxxxx";
 bool g_patchApplied = false;
 
 // ----------------------------------------------------------------------------
-/// <summery>Normalize Value</summery>
-/// <param name="value">Integer value</param>
-/// <returns>Retruns a normalized value between 0-100</returns>
-// ----------------------------------------------------------------------------
-int normalizePercent(int value)
-{
-	if (value < 0)
-		value = 0;
-
-	if (value > 100)
-		value = 100;
-
-	return value;
-}
-
-// ----------------------------------------------------------------------------
 /// <summery>Calculate special ability value from percentage value</summery>
-/// <param name="value">percent</param>
-/// <returns>Retruns a special ability value between 0-30</returns>
+/// <param name="progressPercent">ability progress in percent</param>
+/// <returns>Returns a normalized special ability value between 0-30</returns>
 // ----------------------------------------------------------------------------
 int getMaxSpecialAbilityValue(int progressPercent)
 {	
-	float maxValue = 30.f * normalizePercent(progressPercent) / 100.f;
+	float maxValue = 30.f * Math::normalize(progressPercent, 0, 100) / 100.f;
 	
 	return static_cast<int>(round(maxValue));
 }

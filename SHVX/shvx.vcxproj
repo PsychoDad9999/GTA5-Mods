@@ -22,6 +22,7 @@
     <ClCompile Include="framework\diagnostics\debugConsole.cpp" />
     <ClCompile Include="framework\system\hashKey.cpp" />
     <ClCompile Include="framework\game\globals.cpp" />
+    <ClCompile Include="framework\system\math.cpp" />
     <ClCompile Include="framework\system\module.cpp" />
     <ClCompile Include="framework\world\model.cpp" />
     <ClCompile Include="framework\world\rope.cpp" />
@@ -43,6 +44,7 @@
     <ClInclude Include="framework\memory\memory.h" />
     <ClInclude Include="framework\missions\randomEvents.h" />
     <ClInclude Include="framework\system\hashKey.h" />
+    <ClInclude Include="framework\system\math.h" />
     <ClInclude Include="framework\system\module.h" />
     <ClInclude Include="framework\world\model.h" />
     <ClInclude Include="framework\world\player.h" />

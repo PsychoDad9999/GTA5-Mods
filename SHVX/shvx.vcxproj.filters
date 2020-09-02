@@ -114,6 +114,9 @@
     <ClInclude Include="framework\world\rope.h">
       <Filter>framework\world</Filter>
     </ClInclude>
+    <ClInclude Include="framework\system\math.h">
+      <Filter>framework\system</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework\diagnostics\debugConsole.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="framework\world\rope.cpp">
       <Filter>framework\world</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\system\math.cpp">
+      <Filter>framework\system</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

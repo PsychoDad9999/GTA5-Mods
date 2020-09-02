@@ -54,9 +54,6 @@ private:
 	void getTimeDifference(UINT32 rawdata1, UINT32 rawdata2, int* pDiffSecond, int* pDiffMinute, int* pDiffHour, int* pDiffDay, int* pDiffMonth, int* pDiffYear);
 
 private:
-	float getClosestValue(float value, float min, float max);
-
-private:
 	int getDaysOfMonth(int month, int year);
 
 private:

@@ -2,8 +2,10 @@
 
 #include "dateTime.h"
 
+#include "math.h"
+
 #include <bitset>
-#include <math.h>
+
 
 // ----------------------------------------------------------------------------
 
@@ -592,7 +594,7 @@ void DateTime::getTimeDifference(UINT32 rawdata1, UINT32 rawdata2, int* pDiffSec
 		}
 		diffDays = (diffDays + getDaysOfMonth(month, year));
 		diffMonth = (diffMonth - 1);
-		month = static_cast<int>(round(getClosestValue(static_cast<float>(month + 1), 0.f, 12.f)));
+		month = static_cast<int>(round(Math::getNearestValue(static_cast<float>(month + 1), 0.f, 12.f)));
 	}
 
 	while (diffMonth < 0)
@@ -613,25 +615,4 @@ void DateTime::getTimeDifference(UINT32 rawdata1, UINT32 rawdata2, int* pDiffSec
 	*pDiffDay = diffDays;
 	*pDiffMonth = diffMonth;
 	*pDiffYear = diffYear;
-}
-
-float DateTime::getClosestValue(float value, float min, float max)
-{
-	float diff;
-
-	if (min == max)
-	{
-		return min;
-	}
-
-	diff = (max - min);
-
-	value = (value - (static_cast<int>(round(((value - min) / diff))) * diff));
-
-	if (value < min)
-	{
-		value = (value + diff);
-	}
-
-	return value;
 }
