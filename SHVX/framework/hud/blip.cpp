@@ -2,7 +2,7 @@
 
 #include "blip.h"
 
-#include "inc/natives.h"
+#include <inc/natives.h>
 
 // ----------------------------------------------------------------------------
 

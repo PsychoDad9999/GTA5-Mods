@@ -2,9 +2,11 @@
 
 #include "dateTime.h"
 
-#include "math.h"
-
 #include <bitset>
+#include <ctime>
+
+#include <inc/natives.h>
+#include "math.h"
 
 
 // ----------------------------------------------------------------------------
@@ -178,15 +180,99 @@ bool DateTime::isValidTime()
 }
 
 
-bool DateTime::isNewerThan(DateTime dateTime)
+// ----------------------------------------------------------------------------
+/// <summery>
+/// Compares the value of this instance to a specified DateTime value 
+/// and indicates whether this instance is earlier than, the same as, or later 
+/// than the specified DateTime value.
+/// </summery>
+/// <param name="dateTime">The object to compare to the current instance.</param>
+/// <returns>
+/// Returns less than zero if the instance is earlier than the value.
+/// Returns zero if the instance is the same as the value.
+/// Returns greater than zero if the instance is later than the value.
+/// </returns>
+// ----------------------------------------------------------------------------
+int DateTime::compareTo(DateTime dateTime)
 {
-	return isFirstTimeNewer(m_rawData, dateTime.getRawData());
+	return compare(m_rawData, dateTime.getRawData());
 }
 
 
 void DateTime::getTimeDifference(DateTime dateTime, int* pDiffSecond, int* pDiffMinute, int* pDiffHour, int* pDiffDay, int* pDiffMonth, int* pDiffYear)
 {
 	getTimeDifference(m_rawData, dateTime.getRawData(), pDiffSecond, pDiffMinute, pDiffHour, pDiffDay, pDiffMonth, pDiffYear);
+}
+
+
+DateTime DateTime::getIngameTime()
+{
+	return DateTime(
+		TIME::GET_CLOCK_HOURS(),
+		TIME::GET_CLOCK_MINUTES(),
+		TIME::GET_CLOCK_SECONDS(),
+		TIME::GET_CLOCK_DAY_OF_MONTH(),
+		TIME::GET_CLOCK_MONTH() + 1,  // API returns 0 - 11
+		TIME::GET_CLOCK_YEAR());
+}
+
+
+int DateTime::getTimeDifferenceInSeconds(DateTime time1, DateTime time2)
+{
+	if (!time1.isValidTime() || !time2.isValidTime())
+	{
+		return 0;
+	}
+
+	struct std::tm a =
+	{
+		time1.getSecond(),
+		time1.getMinute(),
+		time1.getHour(),
+		time1.getDay(),
+		time1.getMonth() - 1,
+		time1.getYear() - 1900
+	};
+
+	struct std::tm b =
+	{
+		time2.getSecond(),
+		time2.getMinute(),
+		time2.getHour(),
+		time2.getDay(),
+		time2.getMonth() - 1,
+		time2.getYear() - 1900
+	};
+
+	std::time_t x = std::mktime(&a);
+	std::time_t y = std::mktime(&b);
+
+	if (x != (std::time_t)(-1) && y != (std::time_t)(-1))
+	{
+		return abs(static_cast<int>(std::difftime(y, x)));
+	}
+
+	return 0;
+}
+
+
+// ----------------------------------------------------------------------------
+/// <summery>
+/// Compares two instances of DateTime and returns an integer that indicates 
+/// whether the first instance is earlier than, the same as, or later than 
+/// the second instance.
+/// </summery>
+/// <param name="t1">The first object to compare.</param>
+/// <param name="t2">The second object to compare.</param>
+/// <returns>
+/// Returns less than zero if the first object is earlier than the second object.
+/// Returns zero if the first object is the same as the second object.
+/// Returns greater than zero if the first object is later than the second object.
+/// </returns>
+// ----------------------------------------------------------------------------
+int DateTime::compare(DateTime t1, DateTime t2)
+{
+	return t1.compareTo(t2);
 }
 
 
@@ -422,13 +508,35 @@ bool DateTime::isValidTime(UINT32 rawData)
 
 
 
-bool DateTime::isFirstTimeNewer(UINT32 rawData1, UINT32 rawData2)
+// ----------------------------------------------------------------------------
+/// <summery>
+/// Compares two instances of DateTime RawData and returns an integer that indicates 
+/// whether the first instance is earlier than, the same as, or later than 
+/// the second instance.
+/// </summery>
+/// <param name="rawData1">The first object to compare.</param>
+/// <param name="rawData2">The second object to compare.</param>
+/// <returns>
+/// Returns less than zero if the first object is earlier than the second object.
+/// Returns zero if the first object is the same as the second object.
+/// Returns greater than zero if the first object is later than the second object.
+/// </returns>
+// ----------------------------------------------------------------------------
+int DateTime::compare(UINT32 rawData1, UINT32 rawData2)
 {
-	if (!isValidTime(rawData1) || !isValidTime(rawData2))
+	if (rawData1 == rawData2)
+		return 0;
+
+	if (!isValidTime(rawData1))
 	{
-		return true;
+		return -1;
 	}
 
+	if (!isValidTime(rawData2))
+	{
+		return 1;
+	}
+	
 	// get years
 	int yearDateTime1 = getYear(rawData1);
 	int yearDateTime2 = getYear(rawData2);
@@ -436,11 +544,11 @@ bool DateTime::isFirstTimeNewer(UINT32 rawData1, UINT32 rawData2)
 	// compare year
 	if (yearDateTime1 > yearDateTime2)
 	{
-		return true;
+		return 1;
 	}
 	else if (yearDateTime1 < yearDateTime2)
 	{
-		return false;
+		return -1;
 	}
 
 	// get month
@@ -450,11 +558,11 @@ bool DateTime::isFirstTimeNewer(UINT32 rawData1, UINT32 rawData2)
 	// compare month
 	if (monthDateTime1 > monthDateTime2)
 	{
-		return true;
+		return 1;
 	}
 	else if (monthDateTime1 < monthDateTime2)
 	{
-		return false;
+		return -1;
 	}
 
 	// Get days
@@ -464,11 +572,11 @@ bool DateTime::isFirstTimeNewer(UINT32 rawData1, UINT32 rawData2)
 	// compare day
 	if (dayDateTime1 > dayDateTime2)
 	{
-		return true;
+		return 1;
 	}
 	else if (dayDateTime1 < dayDateTime2)
 	{
-		return false;
+		return -1;
 	}
 
 	// Get hours
@@ -478,11 +586,11 @@ bool DateTime::isFirstTimeNewer(UINT32 rawData1, UINT32 rawData2)
 	// compare hours
 	if (hourDateTime1 > hourDateTime2)
 	{
-		return true;
+		return 1;
 	}
 	else if (hourDateTime1 < hourDateTime2)
 	{
-		return false;
+		return -1;
 	}
 
 	// Get minutes
@@ -492,11 +600,11 @@ bool DateTime::isFirstTimeNewer(UINT32 rawData1, UINT32 rawData2)
 	// compare minutes
 	if (minuteDateTime1 > minuteDateTime2)
 	{
-		return true;
+		return 1;
 	}
 	else if (minuteDateTime1 < minuteDateTime2)
 	{
-		return false;
+		return -1;
 	}
 
 	// get seconds
@@ -506,11 +614,11 @@ bool DateTime::isFirstTimeNewer(UINT32 rawData1, UINT32 rawData2)
 	// compare seconds
 	if (secondsDateTime1 > secondsDateTime2)
 	{
-		return true;
+		return 1;
 	}
 	else
 	{
-		return false;
+		return -1;
 	}
 }
 
@@ -526,7 +634,7 @@ void DateTime::getTimeDifference(UINT32 rawdata1, UINT32 rawdata2, int* pDiffSec
 	int diffMinutes;
 	int diffSeconds;
 
-	if (isFirstTimeNewer(rawdata1, rawdata2))
+	if (compare(rawdata1, rawdata2) > 0)
 	{
 		month = getMonth(rawdata2);
 		year = getYear(rawdata1);

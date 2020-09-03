@@ -35,9 +35,6 @@
     <ClCompile Include="src\script.cpp">
     </ClCompile>
     <ClCompile Include="src\package\hiddenPackagesManager.cpp" />
-    <ClCompile Include="src\time\timeHelper.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\settings\settings.h">
@@ -57,9 +54,6 @@
     </ClInclude>
     <ClInclude Include="src\package\hiddenPackage.h" />
     <ClInclude Include="src\package\hiddenPackagesManager.h" />
-    <ClInclude Include="src\time\timeHelper.h">
-      <Filter>utils</Filter>
-    </ClInclude>
     <ClInclude Include="src\script.h" />
   </ItemGroup>
   <ItemGroup>

@@ -2,8 +2,8 @@
 
 #include "hiddenPackagesManager.h"
 
-#include "framework/hud/blip.h"
-#include "framework/world/world.h"
+#include <framework/hud/blip.h>
+#include <framework/world/world.h>
 
 // ----------------------------------------------------------------------------
 

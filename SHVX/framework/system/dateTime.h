@@ -24,8 +24,13 @@ public:
 public:
 	UINT32 getRawData();
 	bool isValidTime();	
-	bool isNewerThan(DateTime dateTime);
+	int compareTo(DateTime dateTime);
 	void getTimeDifference(DateTime dateTime, int* pDiffSecond, int* pDiffMinute, int* pDiffHour, int* pDiffDay, int* pDiffMonth, int* pDiffYear);
+
+public:
+	static DateTime getIngameTime();
+	static int getTimeDifferenceInSeconds(DateTime time1, DateTime time2);
+	static int compare(DateTime time1, DateTime time2);
 
 
 public:
@@ -50,7 +55,7 @@ private:
 
 private:
 	bool isValidTime(UINT32 rawData);
-	bool isFirstTimeNewer(UINT32 rawData1, UINT32 rawData2);
+	int compare(UINT32 rawData1, UINT32 rawData2);
 	void getTimeDifference(UINT32 rawdata1, UINT32 rawdata2, int* pDiffSecond, int* pDiffMinute, int* pDiffHour, int* pDiffDay, int* pDiffMonth, int* pDiffYear);
 
 private:

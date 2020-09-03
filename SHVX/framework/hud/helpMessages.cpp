@@ -2,7 +2,7 @@
 
 #include "helpMessages.h"
 
-#include "inc/natives.h"
+#include <inc/natives.h>
 
 // ----------------------------------------------------------------------------
 

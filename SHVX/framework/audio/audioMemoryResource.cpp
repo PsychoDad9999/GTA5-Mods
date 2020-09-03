@@ -3,7 +3,6 @@
 #include "audioMemoryResource.h"
 
 #include <stdio.h>
-
 #include "framework/system/module.h"
 
 // ----------------------------------------------------------------------------

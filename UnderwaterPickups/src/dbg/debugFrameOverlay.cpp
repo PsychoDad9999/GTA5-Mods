@@ -4,12 +4,10 @@
 
 #include <cstdio>
 
-#include "inc/natives.h"
-#include "framework/system/dateTime.h"
-#include "framework/system/hashkey.h"
-#include "framework/hud/text.h"
-
-#include "time/timeHelper.h"
+#include <inc/natives.h>
+#include <framework/system/dateTime.h>
+#include <framework/system/hashkey.h>
+#include <framework/hud/text.h>
 
 
 // ----------------------------------------------------------------------------
@@ -94,7 +92,7 @@ void DebugFrameOverlay::drawDebugOverlay(const UINT64* pVar)
 	Text::displayTextForCurrentFrame(currentIngameYearText, 0.9, 0.15, true);
 
 
-	DateTime dateTime = TimeHelper::getIngameTime();
+	DateTime dateTime = DateTime::getIngameTime();
 
 	char currentIngameDateTimeText[256];
 	sprintf_s(currentIngameDateTimeText, "%d:%d:%d %d.%d.%d [I]", dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond(), dateTime.getDay(), dateTime.getMonth(), dateTime.getYear());

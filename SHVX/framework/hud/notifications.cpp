@@ -2,7 +2,7 @@
 
 #include "notifications.h"
 
-#include "inc/natives.h"
+#include <inc/natives.h>
 
 // ----------------------------------------------------------------------------
 

@@ -2,7 +2,7 @@
 
 #include "randomEvents.h"
 
-#include "inc/natives.h"
+#include <inc/natives.h>
 
 #include "framework/system/hashKey.h"
 

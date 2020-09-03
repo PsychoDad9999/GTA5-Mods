@@ -2,19 +2,18 @@
 
 #include "script.h"
 
-#include "inc/natives.h"
-#include "framework/system/dateTime.h"
-#include "framework/system/hashKey.h"
-#include "framework/hud/notifications.h"
-#include "framework/hud/text.h"
-#include "framework/diagnostics/debugConsole.h"
-#include "framework/game/gameVersion.h"
-#include "framework/game/globals.h"
-#include "framework/world/world.h"
+#include <inc/natives.h>
+#include <framework/system/dateTime.h>
+#include <framework/system/hashKey.h>
+#include <framework/hud/notifications.h>
+#include <framework/hud/text.h>
+#include <framework/diagnostics/debugConsole.h>
+#include <framework/game/gameVersion.h>
+#include <framework/game/globals.h>
+#include <framework/world/world.h>
 
 #include "settings/settings.h"
 #include "dbg/debugFrameOverlay.h"
-#include "time/timeHelper.h"
 #include "package/hiddenPackagesManager.h"
 
 #include <chrono>
@@ -34,7 +33,7 @@ UINT64* g_pNextSpawnDateTime;
 
 HiddenPackagesManager g_packagesManager;
 
-// ckeck if GTA UnderwaterPickups script was running last frame
+// check if GTA UnderwaterPickups script was running last frame
 bool g_isScriptRunning = false;
 bool g_unsupportedGameVersionErrorShown = false;
 
@@ -54,9 +53,9 @@ void showNotification(char* message, int id);
 void handleInstantRespawn()
 {
 	// Set next spawn time of underwater pickups
-	if (*g_pNextSpawnDateTime != TimeHelper::TIME_NOT_SET)
+	if (*g_pNextSpawnDateTime != DateTime::TIME_NOT_SET)
 	{
-		*g_pNextSpawnDateTime = TimeHelper::TIME_NOT_SET;
+		*g_pNextSpawnDateTime = DateTime::TIME_NOT_SET;
 
 		showNotification("Nearby underwater pickup has respawned.", NOTIFICATION_RESPAWN);
 	}
@@ -75,7 +74,7 @@ void handleDelayedRespawn(Vector3 playerLocation)
 	// overwrite global variable with value of closest package
 	if (*g_pNextSpawnDateTime != closestPackage->nextSpawnTime.getRawData())
 	{
-		if (*g_pNextSpawnDateTime == TimeHelper::TIME_NOT_SET)
+		if (*g_pNextSpawnDateTime == DateTime::TIME_NOT_SET)
 		{
 			// clear saved timer values
 			g_packagesManager.purge();
@@ -92,10 +91,10 @@ void handleDelayedRespawn(Vector3 playerLocation)
 
 		if (!g_isScriptRunning && isScriptRunning)
 		{
-			DateTime currentIngameTime = TimeHelper::getIngameTime();
+			DateTime currentIngameTime = DateTime::getIngameTime();			
 
 			// Script changed from not running to running
-			if (TimeHelper::isFirstLater(currentIngameTime, closestPackage->nextSpawnTime))
+			if (DateTime::compare(currentIngameTime, closestPackage->nextSpawnTime) > 0)
 			{
 				showNotification("Nearby underwater pickup has respawned.", NOTIFICATION_RESPAWN);
 			}
@@ -103,7 +102,7 @@ void handleDelayedRespawn(Vector3 playerLocation)
 			{
 				char nextRespawnTimeText[256];
 
-				int minutesLeft = TimeHelper::getTimeSpanInSeconds(currentIngameTime, closestPackage->nextSpawnTime) / 60;
+				int minutesLeft = DateTime::getTimeDifferenceInSeconds(currentIngameTime, closestPackage->nextSpawnTime) / 60;
 				
 				if (minutesLeft <= 120)
 				{
@@ -130,7 +129,7 @@ void handleDelayedRespawn(Vector3 playerLocation)
 
 				if (closestPackage->isPickupInRange && !isPickupInRange)
 				{
-					DateTime nextSpawnTime = TimeHelper::getIngameTime();
+					DateTime nextSpawnTime = DateTime::getIngameTime();
 					nextSpawnTime.addTime(g_settings.behavior.respawnTimeInHours, 0, 0, 0, 0, 0);
 
 					closestPackage->nextSpawnTime = nextSpawnTime;
