@@ -24,11 +24,13 @@ UINT64* Globals::getGlobal(eGlobals global, eExtGameVersion gameVersion)
 		case eExtGameVersion::BUILD_1_0_1868_0_NOSTEAM:
 		case eExtGameVersion::BUILD_1_0_1868_1_STEAM:
 		case eExtGameVersion::BUILD_1_0_1868_1_NOSTEAM:
+		case eExtGameVersion::BUILD_1_0_1868_4_EPIC:
 			return getGlobalPtr(2460417);
 
 		case eExtGameVersion::BUILD_1_0_2060_0_STEAM:
-		case eExtGameVersion::BUILD_1_0_2060_0_EPIC:
-		case eExtGameVersion::BUILD_1_0_2060_0_ROCKSTAR:
+		case eExtGameVersion::BUILD_1_0_2060_0_NOSTEAM:		
+		case eExtGameVersion::BUILD_1_0_2060_1_STEAM:
+		case eExtGameVersion::BUILD_1_0_2060_1_NOSTEAM:		
 			return getGlobalPtr(2462098);
 		}
 		break;	

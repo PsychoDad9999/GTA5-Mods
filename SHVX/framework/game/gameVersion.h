@@ -105,7 +105,7 @@ enum eExtGameVersion : int
 	BUILD_1_0_1604_1_STEAM,
 	BUILD_1_0_1604_1_NOSTEAM,
 
-	// Online Update 1.48 [The Diamond Casino & Resort]
+	// Online Update 1.47 [The Diamond Casino & Resort]
 	BUILD_1_0_1737_0_STEAM,
 	BUILD_1_0_1737_0_NOSTEAM,
 
@@ -117,17 +117,20 @@ enum eExtGameVersion : int
 	BUILD_1_0_1868_0_STEAM,
 	BUILD_1_0_1868_0_NOSTEAM,
 
-	// April 2020 Update
+	// Online Update 1.50
 	BUILD_1_0_1868_1_STEAM,
 	BUILD_1_0_1868_1_NOSTEAM,
 
 	// Epic Update
 	BUILD_1_0_1868_4_EPIC,	
 
-	// [Los Santos Summer Special Update]
+	// Online Update 1.51 [Los Santos Summer Special Update]
 	BUILD_1_0_2060_0_STEAM,
-	BUILD_1_0_2060_0_EPIC,
-	BUILD_1_0_2060_0_ROCKSTAR,
+	BUILD_1_0_2060_0_NOSTEAM,
+
+	// Online Update 1.52
+	BUILD_1_0_2060_1_STEAM,
+	BUILD_1_0_2060_1_NOSTEAM,
 
 	BUILD_UNK = -1
 };
