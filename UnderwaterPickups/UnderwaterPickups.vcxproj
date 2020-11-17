@@ -7,6 +7,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\memorysearch.cpp" />
     <ClCompile Include="src\settings\settings.cpp" />
     <ClCompile Include="src\utils\stringUtils.cpp" />
     <ClCompile Include="src\utils\typeConverter.cpp" />
@@ -17,6 +18,7 @@
     <ClCompile Include="src\script.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\memorysearch.h" />
     <ClInclude Include="src\settings\settings.h" />
     <ClInclude Include="src\utils\stringUtils.h" />
     <ClInclude Include="src\utils\typeConverter.h" />
@@ -90,7 +92,7 @@
       <AdditionalDependencies>..\SHVX\lib\ScriptHookV.lib;%(AdditionalOptions)</AdditionalDependencies>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>Kernel32.lib;Winmm.lib;..\SHV\lib\ScriptHookV.lib</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;Kernel32.lib;Winmm.lib;..\SHV\lib\ScriptHookV.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

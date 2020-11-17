@@ -35,6 +35,7 @@
     <ClCompile Include="src\script.cpp">
     </ClCompile>
     <ClCompile Include="src\package\hiddenPackagesManager.cpp" />
+    <ClCompile Include="src\memorysearch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\settings\settings.h">
@@ -55,6 +56,7 @@
     <ClInclude Include="src\package\hiddenPackage.h" />
     <ClInclude Include="src\package\hiddenPackagesManager.h" />
     <ClInclude Include="src\script.h" />
+    <ClInclude Include="src\memorysearch.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="config\UnderwaterPickups.ini">

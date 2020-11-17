@@ -15,9 +15,11 @@
 #include "settings/settings.h"
 #include "dbg/debugFrameOverlay.h"
 #include "package/hiddenPackagesManager.h"
+#include "memorysearch.h"
 
 #include <chrono>
 #include <iostream>
+
 
 // ----------------------------------------------------------------------------
 
@@ -170,13 +172,13 @@ void update()
 	if (g_pNextSpawnDateTime == nullptr && !DLC2::GET_IS_LOADING_SCREEN_ACTIVE())
 	{
 		if (g_settings.hud.showUnsupportedVersionNotification && !g_unsupportedGameVersionErrorShown)
-		{
+		{						
 			// show only once
 			g_unsupportedGameVersionErrorShown = true;
 			Notifications::showNotification("UnderwaterPickups.asi\nGame version not supported. Please check for an update", 5000, NOTIFICATION_VERSION);
 		}
 	}
-		
+
 	#ifdef DEBUG_DRAW_OVERLAY
 	// draw debug overlay
 	DebugFrameOverlay::drawDebugOverlay(g_pNextSpawnDateTime);
@@ -224,7 +226,14 @@ void runScript()
 	// load settings from ini file
 	Settings::loadFromFile(g_settings, TEXT("UnderwaterPickups.ini"));
 
+	// get global directly for some game versions
 	g_pNextSpawnDateTime = Globals::getGlobal(eGlobals::UNDERWATER_PICKUP_RESPAWN_TIME, static_cast<eExtGameVersion>(getGameVersion()));
+
+	if (g_pNextSpawnDateTime == nullptr)
+	{
+		g_pNextSpawnDateTime = MemorySearch::getPickupSpawnTimeGlobal();
+	}
+
 	g_isScriptRunning = false;
 
 	if (g_settings.hud.showPackageBlips)

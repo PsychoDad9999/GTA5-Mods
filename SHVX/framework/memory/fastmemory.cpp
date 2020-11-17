@@ -11,40 +11,85 @@
 
 UINT64* FastMemory::findPattern(const char* pattern, const char* mask)
 {
-	SIZE_T patternLength = strlen(pattern);
-	SIZE_T maskLength = strlen(mask);
+	MODULEINFO moduleInfo;
+	memset(&moduleInfo, 0, sizeof(moduleInfo));
 
-	if (patternLength != maskLength)
-		return nullptr;
+	if (GetModuleInformation(GetCurrentProcess(), GetModuleHandle(nullptr) /* Module::getModule()*/, &moduleInfo, sizeof(moduleInfo)))
+	{		 
+		BYTE* baseAddress = reinterpret_cast<BYTE*>(moduleInfo.lpBaseOfDll);
+
+		return reinterpret_cast<UINT64*>(baseAddress);
+
+		return findPattern(pattern, mask, baseAddress, moduleInfo.SizeOfImage);
+	}
+
+	return nullptr;	
+}
+
+
+
+UINT64* FastMemory::findPattern(const char* pattern, const char* mask, BYTE* startAddress, const SIZE_T size)
+{
+	BYTE* endAddress = startAddress + size;
+	const SIZE_T patternLength = strlen(mask);
+
+	BYTE* address = startAddress;
+
+	for (SIZE_T patternIdx = 0; address < endAddress; address++)
+	{
+		if (*address == pattern[patternIdx] || mask[patternIdx] == '?')
+		{
+			if (mask[patternIdx + 1] == '\0')
+			{
+				return reinterpret_cast<UINT64*>(address - patternLength);
+			}
+
+			patternIdx++;
+		}
+		else 
+		{
+			patternIdx = 0;
+		}
+	}
+	return nullptr;
+}
+
+
+
+
+
+UINT64* FastMemory::findPatternBackwards(const char* pattern, const char* mask)
+{
+	SIZE_T patternLength = strlen(mask);
 
 	MODULEINFO moduleInfo;
 	memset(&moduleInfo, 0, sizeof(moduleInfo));
 
 	if (GetModuleInformation(GetCurrentProcess(), Module::getModule(), &moduleInfo, sizeof(moduleInfo)))
-	{		 
+	{
 		UINT64 baseAddress = reinterpret_cast<UINT64>(moduleInfo.lpBaseOfDll);
 		UINT64 endAddress = baseAddress + moduleInfo.SizeOfImage;
 
-		UINT64 address = baseAddress;
-
-		for (; address < endAddress; address++)
+		for (UINT64 address = endAddress - ( 2 * patternLength); address > baseAddress; address--)
 		{
-			for (int i = 0; i < patternLength; i++)
+			for (int patternIdx = 0; patternIdx < patternLength; patternIdx++)
 			{
-				if (mask[i] != '?' && ((char*)address)[i] != pattern[i])
-				{					
+				if (mask[patternIdx] != '?' && pattern[patternIdx] != (reinterpret_cast<char*>(address))[patternIdx])
+				{
 					break;
 				}
-				else if (i + 1 == patternLength)
+				else if (patternIdx + 1 == patternLength)
 				{
 					return reinterpret_cast<UINT64*>(address);
 				}
 			}
 		}
-
-		return nullptr;
 	}
+
+	return nullptr;
 }
+
+
 
 
 bool FastMemory::readInt32FromMemory(UINT64* address, int* value, bool readFromLower32Bits)

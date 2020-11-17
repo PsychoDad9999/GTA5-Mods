@@ -10,6 +10,8 @@ class FastMemory
 {
 public:
 	static UINT64* findPattern(const char* pattern, const char* mask);
+	static UINT64* findPattern(const char* pattern, const char* mask, BYTE* startAddress, const SIZE_T size);
+	static UINT64* findPatternBackwards(const char* pattern, const char* mask);
 
 	static bool readInt32FromMemory(UINT64* address, int* value, bool readFromLower32Bits);
 	static bool readFloatFromMemory(UINT64* address, float* value, bool readFromLower32Bits);
