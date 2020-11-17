@@ -15,7 +15,7 @@
 #include "settings/settings.h"
 #include "dbg/debugFrameOverlay.h"
 #include "package/hiddenPackagesManager.h"
-#include "memorysearch.h"
+#include "memoryPattern.h"
 
 #include <chrono>
 #include <iostream>
@@ -231,7 +231,7 @@ void runScript()
 
 	if (g_pNextSpawnDateTime == nullptr)
 	{
-		g_pNextSpawnDateTime = MemorySearch::getPickupSpawnTimeGlobal();
+		g_pNextSpawnDateTime = MemoryPattern::getPickupSpawnTimeGlobal();
 	}
 
 	g_isScriptRunning = false;
