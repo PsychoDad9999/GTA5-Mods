@@ -105,9 +105,6 @@
     <ClInclude Include="framework\hud\helpMessages.h">
       <Filter>framework\hud</Filter>
     </ClInclude>
-    <ClInclude Include="framework\memory\fastmemory.h">
-      <Filter>framework\memory</Filter>
-    </ClInclude>
     <ClInclude Include="framework\world\model.h">
       <Filter>framework\world</Filter>
     </ClInclude>
@@ -166,9 +163,6 @@
     </ClCompile>
     <ClCompile Include="framework\hud\helpMessages.cpp">
       <Filter>framework\hud</Filter>
-    </ClCompile>
-    <ClCompile Include="framework\memory\fastmemory.cpp">
-      <Filter>framework\memory</Filter>
     </ClCompile>
     <ClCompile Include="framework\world\model.cpp">
       <Filter>framework\world</Filter>

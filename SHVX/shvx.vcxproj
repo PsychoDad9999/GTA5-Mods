@@ -15,7 +15,6 @@
     <ClCompile Include="framework\hud\text.cpp" />
     <ClCompile Include="framework\input\keyboard.cpp" />
     <ClCompile Include="framework\input\keyboardMapper.cpp" />
-    <ClCompile Include="framework\memory\fastmemory.cpp" />
     <ClCompile Include="framework\memory\memory.cpp" />
     <ClCompile Include="framework\missions\randomEvents.cpp" />
     <ClCompile Include="framework\system\dateTime.cpp" />
@@ -40,7 +39,6 @@
     <ClInclude Include="framework\input\keyboard.h" />
     <ClInclude Include="framework\input\keyboardMapper.h" />
     <ClInclude Include="framework\input\keydefines.h" />
-    <ClInclude Include="framework\memory\fastmemory.h" />
     <ClInclude Include="framework\memory\memory.h" />
     <ClInclude Include="framework\missions\randomEvents.h" />
     <ClInclude Include="framework\system\hashKey.h" />
