@@ -197,8 +197,8 @@ bool fixLoadingGlitch(Ped playerPed)
 			return false;
 		}
 
-		// this search can take some time (a couple of seconds)
-		UINT64* pSpecialAbilityMemoryBaseLocation = Memory::findPattern(searchPattern, (char*)SPECIAL_ABILITY_MASK);
+		// this search can take some time
+		UINT64* pSpecialAbilityMemoryBaseLocation = Memory::findPattern(searchPattern, (char*)SPECIAL_ABILITY_MASK, Memory::ScanAlignment::QWord);
 
 		if (pSpecialAbilityMemoryBaseLocation == nullptr)
 		{
