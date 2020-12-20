@@ -23,7 +23,8 @@ UINT64* MemoryPattern::getPickupSpawnTimeGlobal()
 		// make another consistency check, to make sure we are reading the correct memory address
 		if (Memory::readInt32FromMemory(pMatch, &value, true))
 		{
-			if (value == DateTime::TIME_NOT_SET)
+			// check if raw data is a valid date time object
+			if (value == DateTime::TIME_NOT_SET || DateTime(value).isValidTime())
 				return pMatch;
 		}
 	}

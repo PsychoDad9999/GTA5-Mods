@@ -132,6 +132,10 @@ enum eExtGameVersion : int
 	BUILD_1_0_2060_1_STEAM,
 	BUILD_1_0_2060_1_NOSTEAM,
 
+	// [The Cayo Perico Heist Update]
+	BUILD_1_0_2189_0_STEAM,
+	BUILD_1_0_2189_0_NOSTEAM,
+
 	BUILD_UNK = -1
 };
 
