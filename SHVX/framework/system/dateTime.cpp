@@ -249,7 +249,7 @@ int DateTime::getTimeDifferenceInSeconds(DateTime time1, DateTime time2)
 
 	if (x != (std::time_t)(-1) && y != (std::time_t)(-1))
 	{
-		return abs(static_cast<int>(std::difftime(y, x)));
+		return (static_cast<int>(std::difftime(y, x)));
 	}
 
 	return 0;
@@ -278,34 +278,34 @@ int DateTime::compare(DateTime t1, DateTime t2)
 
 int DateTime::getSecond(UINT32 rawData)
 {
-	return (m_rawData & BITMASK_SECOND) >> BIT_OFFSET_SECOND;
+	return (rawData & BITMASK_SECOND) >> BIT_OFFSET_SECOND;
 }
 
 int DateTime::getMinute(UINT32 rawData)
 {
-	return (m_rawData & BITMASK_MINUTE) >> BIT_OFFSET_MINUTE;
+	return (rawData & BITMASK_MINUTE) >> BIT_OFFSET_MINUTE;
 }
 
 int DateTime::getHour(UINT32 rawData)
 {
-	return (m_rawData & BITMASK_HOUR) >> BIT_OFFSET_HOUR;
+	return (rawData & BITMASK_HOUR) >> BIT_OFFSET_HOUR;
 }
 
 int DateTime::getDay(UINT32 rawData)
 {
-	return (m_rawData & BITMASK_DAY) >> BIT_OFFSET_DAY;
+	return (rawData & BITMASK_DAY) >> BIT_OFFSET_DAY;
 }
 
 int DateTime::getMonth(UINT32 rawData)
 {
-	return (m_rawData & BITMASK_MONTH) >> BIT_OFFSET_MONTH;
+	return (rawData & BITMASK_MONTH) >> BIT_OFFSET_MONTH;
 }
 
 int DateTime::getYear(UINT32 rawData)
 {
-	int bitValue = ((m_rawData & BITMASK_2011_BIT) != 0) ? -1 : 1;
+	int bitValue = ((rawData & BITMASK_2011_BIT) != 0) ? -1 : 1;
 
-	return ((m_rawData >> BIT_OFFSET_YEAR) & 31) * bitValue + 2011;
+	return ((rawData >> BIT_OFFSET_YEAR) & 31) * bitValue + 2011;
 }
 
 
@@ -535,7 +535,7 @@ int DateTime::compare(UINT32 rawData1, UINT32 rawData2)
 	if (!isValidTime(rawData2))
 	{
 		return 1;
-	}
+	}	
 	
 	// get years
 	int yearDateTime1 = getYear(rawData1);
