@@ -293,7 +293,7 @@ bool Memory::writeInt32ToMemory(UINT64* address, int value, bool writeToLowerDWo
 			{
 				if (directAccess)
 				{
-					*pAddress = value;
+					*reinterpret_cast<int*>(pAddress) = value;
 					succeed = true;
 				}
 				else
