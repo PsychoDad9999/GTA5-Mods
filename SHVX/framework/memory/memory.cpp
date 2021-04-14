@@ -9,33 +9,33 @@
 
 UINT64* Memory::findPattern(const char* pattern, const char* mask)
 {
-	return findPattern(pattern, mask, ScanAlignment::Byte);
+	return findPattern(pattern, mask, ScanAlignment::Byte, PageType::Any, false);
 }
 
 
-UINT64* Memory::findPattern(const char* pattern, const char* mask, ScanAlignment alignment)
+UINT64* Memory::findPattern(const char* pattern, const char* mask, ScanAlignment alignment, PageType type, bool directAccess)
 {
 	SYSTEM_INFO sysInfo;
 	memset(&sysInfo, 0, sizeof(sysInfo));
 
 	GetSystemInfo(&sysInfo);
 
-	return findPattern(pattern, mask, reinterpret_cast<BYTE*>(sysInfo.lpMinimumApplicationAddress), reinterpret_cast<BYTE*>(sysInfo.lpMaximumApplicationAddress), alignment);
+	return findPattern(pattern, mask, reinterpret_cast<BYTE*>(sysInfo.lpMinimumApplicationAddress), reinterpret_cast<BYTE*>(sysInfo.lpMaximumApplicationAddress), alignment, type, directAccess);
 }
 
 
-UINT64* Memory::findPattern(const char* pattern, const char* mask, BYTE* startAddress, ScanAlignment alignment)
+UINT64* Memory::findPattern(const char* pattern, const char* mask, BYTE* startAddress, ScanAlignment alignment, PageType type, bool directAccess)
 {
 	SYSTEM_INFO sysInfo;
 	memset(&sysInfo, 0, sizeof(sysInfo));
 
 	GetSystemInfo(&sysInfo);
 
-	return findPattern(pattern, mask, startAddress, reinterpret_cast<BYTE*>(sysInfo.lpMaximumApplicationAddress), alignment);
+	return findPattern(pattern, mask, startAddress, reinterpret_cast<BYTE*>(sysInfo.lpMaximumApplicationAddress), alignment, type, directAccess);
 }
 
 
-UINT64* Memory::findPattern(const char* pattern, const char* mask, BYTE* startAddress, BYTE* endAddress, ScanAlignment alignment)
+UINT64* Memory::findPattern(const char* pattern, const char* mask, BYTE* startAddress, BYTE* endAddress, ScanAlignment alignment, PageType type, bool directAccess)
 {		
 	BYTE* pMemChunk = startAddress;	
 	SIZE_T bytesRead = 0;
@@ -64,31 +64,47 @@ UINT64* Memory::findPattern(const char* pattern, const char* mask, BYTE* startAd
 		if (regionOffset < 0 || regionSize <= 0)
 			return nullptr;
 
-		if (mbi.State == MEM_COMMIT && mbi.Protect == PAGE_READWRITE)
+		// skip page if type doesn't match
+		if (type == PageType::Any || mbi.Type == type)
 		{
-			pBuffer = new BYTE[regionSize];
-												
-			DWORD oldprotect;			
+			if (mbi.State == MEM_COMMIT && mbi.Protect == PAGE_READWRITE)
+			{				
+				if (directAccess)
+				{
+					const BYTE* pBufferMatch = scanMemory(pattern, mask, pMemChunk, regionSize, alignment);
 
-			if (VirtualProtectEx(hProcess, pMemChunk, regionSize, PAGE_EXECUTE_READWRITE, &oldprotect))
-			{
-				ReadProcessMemory(hProcess, pMemChunk, pBuffer, regionSize, &bytesRead);
-				VirtualProtectEx(hProcess, pMemChunk, regionSize, oldprotect, &oldprotect);
-				
-				const BYTE* pBufferMatch = scanMemory(pattern, mask, pBuffer, bytesRead, alignment);
+					if (pBufferMatch != nullptr)
+					{
+						return reinterpret_cast<UINT64*>(const_cast<BYTE*>(pBufferMatch));
+					}
+				}
+				else
+				{
+					pBuffer = new BYTE[regionSize];
 
-				if (pBufferMatch != nullptr)
-				{		
-					// get memory address of match
-					BYTE* pMatch = pMemChunk + (pBufferMatch - pBuffer);
+					DWORD oldprotect;
 
-					// clean up buffer
-					if (pBuffer)
-						delete[] pBuffer;
+					if (VirtualProtectEx(hProcess, pMemChunk, regionSize, PAGE_EXECUTE_READWRITE, &oldprotect))
+					{
+						ReadProcessMemory(hProcess, pMemChunk, pBuffer, regionSize, &bytesRead);
+						VirtualProtectEx(hProcess, pMemChunk, regionSize, oldprotect, &oldprotect);
 
-					pBuffer = nullptr;
+						const BYTE* pBufferMatch = scanMemory(pattern, mask, pBuffer, bytesRead, alignment);
 
-					return reinterpret_cast<UINT64*>(pMatch);
+						if (pBufferMatch != nullptr)
+						{
+							// get memory address of match
+							BYTE* pMatch = pMemChunk + (pBufferMatch - pBuffer);
+
+							// clean up buffer
+							if (pBuffer)
+								delete[] pBuffer;
+
+							pBuffer = nullptr;
+
+							return reinterpret_cast<UINT64*>(pMatch);
+						}
+					}
 				}
 			}
 		}
@@ -135,7 +151,7 @@ const BYTE* Memory::scanMemory(const char* pattern, const char* mask, const BYTE
 
 
 
-bool Memory::readInt32FromMemory(UINT64* address, int* value, bool readFromLowerDWord)
+bool Memory::readInt32FromMemory(UINT64* address, int* value, bool readFromLowerDWord, bool directAccess)
 {
 	bool succeed = false;
 	*value = 0;
@@ -156,22 +172,30 @@ bool Memory::readInt32FromMemory(UINT64* address, int* value, bool readFromLower
 	{
 		if (READ_SIZE <= mbi.RegionSize)
 		{
-			if (mbi.State == MEM_COMMIT && mbi.Protect != PAGE_NOACCESS)
+			if (mbi.State == MEM_COMMIT && (mbi.Protect == PAGE_READWRITE || mbi.Protect == PAGE_READONLY || mbi.Protect == PAGE_EXECUTE_READ || mbi.Protect == PAGE_EXECUTE_READWRITE))
 			{
-				BYTE* buffer = new BYTE[READ_SIZE];
-				DWORD oldprotect;
-
-				if (VirtualProtectEx(process, pAddress, READ_SIZE, PAGE_EXECUTE_READWRITE, &oldprotect))
+				if (directAccess)
 				{
-					ReadProcessMemory(process, pAddress, buffer, READ_SIZE, NULL);
-					VirtualProtectEx(process, pAddress, READ_SIZE, oldprotect, &oldprotect);
-
-					memcpy(value, buffer, READ_SIZE);
-
+					*value = *reinterpret_cast<int*>(pAddress);
 					succeed = true;
 				}
+				else
+				{ 
+					BYTE* buffer = new BYTE[READ_SIZE];
+					DWORD oldprotect;
 
-				delete[] buffer;
+					if (VirtualProtectEx(process, pAddress, READ_SIZE, PAGE_EXECUTE_READWRITE, &oldprotect))
+					{
+						ReadProcessMemory(process, pAddress, buffer, READ_SIZE, NULL);
+						VirtualProtectEx(process, pAddress, READ_SIZE, oldprotect, &oldprotect);
+
+						memcpy(value, buffer, READ_SIZE);
+
+						succeed = true;
+					}
+
+					delete[] buffer;
+				}
 			}
 		}
 	}
@@ -180,7 +204,7 @@ bool Memory::readInt32FromMemory(UINT64* address, int* value, bool readFromLower
 }
 
 
-bool Memory::readInt64FromMemory(UINT64* address, INT64* value)
+bool Memory::readInt64FromMemory(UINT64* address, INT64* value, bool directAccess)
 {
 	bool succeed = false;
 	*value = 0;
@@ -196,22 +220,30 @@ bool Memory::readInt64FromMemory(UINT64* address, INT64* value)
 	{
 		if (READ_SIZE <= mbi.RegionSize)
 		{
-			if (mbi.State == MEM_COMMIT && mbi.Protect != PAGE_NOACCESS)
+			if (mbi.State == MEM_COMMIT && (mbi.Protect == PAGE_READWRITE || mbi.Protect == PAGE_READONLY || mbi.Protect == PAGE_EXECUTE_READ || mbi.Protect == PAGE_EXECUTE_READWRITE))
 			{
-				BYTE* buffer = new BYTE[READ_SIZE];
-				DWORD oldprotect;
-
-				if (VirtualProtectEx(process, pAddress, READ_SIZE, PAGE_EXECUTE_READWRITE, &oldprotect))
+				if (directAccess)
 				{
-					ReadProcessMemory(process, pAddress, buffer, READ_SIZE, NULL);
-					VirtualProtectEx(process, pAddress, READ_SIZE, oldprotect, &oldprotect);
-
-					memcpy(value, buffer, READ_SIZE);
-
+					*value = *reinterpret_cast<INT64*>(pAddress);
 					succeed = true;
 				}
+				else
+				{
+					BYTE* buffer = new BYTE[READ_SIZE];
+					DWORD oldprotect;
 
-				delete[] buffer;
+					if (VirtualProtectEx(process, pAddress, READ_SIZE, PAGE_EXECUTE_READWRITE, &oldprotect))
+					{
+						ReadProcessMemory(process, pAddress, buffer, READ_SIZE, NULL);
+						VirtualProtectEx(process, pAddress, READ_SIZE, oldprotect, &oldprotect);
+
+						memcpy(value, buffer, READ_SIZE);
+
+						succeed = true;
+					}
+
+					delete[] buffer;
+				}
 			}
 		}
 	}
@@ -220,12 +252,12 @@ bool Memory::readInt64FromMemory(UINT64* address, INT64* value)
 }
 
 
-bool Memory::readFloatFromMemory(UINT64* address, float* value, bool readFromLowerDWord)
+bool Memory::readFloatFromMemory(UINT64* address, float* value, bool readFromLowerDWord, bool directAccess)
 {
 	*value = 0.0f;
 	int intValue = 0;
 
-	if (readInt32FromMemory(address, &intValue, readFromLowerDWord))
+	if (readInt32FromMemory(address, &intValue, readFromLowerDWord, directAccess))
 	{
 		*value = *reinterpret_cast<float*>(&intValue);
 		return true;
@@ -234,7 +266,7 @@ bool Memory::readFloatFromMemory(UINT64* address, float* value, bool readFromLow
 	return false;
 }
 
-bool Memory::writeInt32ToMemory(UINT64* address, int value, bool writeToLowerDWord)
+bool Memory::writeInt32ToMemory(UINT64* address, int value, bool writeToLowerDWord, bool directAccess)
 {
 	bool succeed = false;
 
@@ -257,22 +289,30 @@ bool Memory::writeInt32ToMemory(UINT64* address, int value, bool writeToLowerDWo
 	{
 		if (WRITE_SIZE <= mbi.RegionSize)
 		{
-			if (mbi.State == MEM_COMMIT && mbi.Protect != PAGE_NOACCESS)
+			if (mbi.State == MEM_COMMIT && (mbi.Protect == PAGE_READWRITE || mbi.Protect == PAGE_WRITECOPY || mbi.Protect == PAGE_EXECUTE_READWRITE || mbi.Protect == PAGE_EXECUTE_WRITECOPY))
 			{
-				BYTE* buffer = new BYTE[WRITE_SIZE];
-				DWORD oldprotect;
-
-				if (VirtualProtectEx(process, pAddress, WRITE_SIZE, PAGE_EXECUTE_READWRITE, &oldprotect))
+				if (directAccess)
 				{
-					memcpy(buffer, &value, WRITE_SIZE);
-
-					WriteProcessMemory(process, pAddress, buffer, WRITE_SIZE, &bytesWritten);
-					VirtualProtectEx(process, pAddress, WRITE_SIZE, oldprotect, &oldprotect);
-
-					succeed = bytesWritten == WRITE_SIZE;;
+					*pAddress = value;
+					succeed = true;
 				}
+				else
+				{
+					BYTE* buffer = new BYTE[WRITE_SIZE];
+					DWORD oldprotect;
 
-				delete[] buffer;
+					if (VirtualProtectEx(process, pAddress, WRITE_SIZE, PAGE_EXECUTE_READWRITE, &oldprotect))
+					{
+						memcpy(buffer, &value, WRITE_SIZE);
+
+						WriteProcessMemory(process, pAddress, buffer, WRITE_SIZE, &bytesWritten);
+						VirtualProtectEx(process, pAddress, WRITE_SIZE, oldprotect, &oldprotect);
+
+						succeed = bytesWritten == WRITE_SIZE;;
+					}
+
+					delete[] buffer;
+				}
 			}
 		}
 	}
@@ -281,9 +321,9 @@ bool Memory::writeInt32ToMemory(UINT64* address, int value, bool writeToLowerDWo
 }
 
 
-bool Memory::writeFloatToMemory(UINT64* address, float value, bool writeToLowerDWord)
+bool Memory::writeFloatToMemory(UINT64* address, float value, bool writeToLowerDWord, bool directAccess)
 {
 	int intValue = *reinterpret_cast<int*>(&value);
 
-	return writeInt32ToMemory(address, intValue, writeToLowerDWord);
+	return writeInt32ToMemory(address, intValue, writeToLowerDWord, directAccess);
 }
