@@ -123,7 +123,7 @@ bool writeAbilityValueToMemory(UINT64* pAddress, float newAbilityValue)
 
 	float currentAbilityValue = 0.0f;
 
-	if (!Memory::readFloatFromMemory(pAddress, &currentAbilityValue, false))
+	if (!Memory::readFloatFromMemory(pAddress, &currentAbilityValue, false, true))
 	{
 		printf("Failed to read float from memory location\n");
 		return false;
@@ -136,7 +136,7 @@ bool writeAbilityValueToMemory(UINT64* pAddress, float newAbilityValue)
 		return false; // values should be between 0-30
 	}
 
-	if (Memory::writeFloatToMemory(pAddress, static_cast<float>(newAbilityValue), false))
+	if (Memory::writeFloatToMemory(pAddress, static_cast<float>(newAbilityValue), false, true))
 	{
 		return true;
 	}
@@ -195,10 +195,23 @@ bool fixLoadingGlitch(Ped playerPed)
 		{
 			printf("Memory search pattern empty\n");
 			return false;
-		}
+		}						
+		
 
-		// this search can take some time
-		UINT64* pSpecialAbilityMemoryBaseLocation = Memory::findPattern(searchPattern, (char*)SPECIAL_ABILITY_MASK, Memory::ScanAlignment::QWord);
+		//printf("Scanning SPECIAL ABILITY Memory Pattern ...\n");
+		//auto t_start = std::chrono::high_resolution_clock::now();
+
+		// this search should complete in 100ms
+		UINT64* pSpecialAbilityMemoryBaseLocation = Memory::findPattern(searchPattern, (char*)SPECIAL_ABILITY_MASK, Memory::ScanAlignment::QWord, Memory::PageType::Private, true);
+		
+		/*
+		auto t_end = std::chrono::high_resolution_clock::now();
+		double elapsed_time_ms = std::chrono::duration<double, std::milli>(t_end - t_start).count();
+
+		char text[256];
+		sprintf_s(text, "Completed in %lf ms\n", elapsed_time_ms);
+		printf(text);
+		*/
 
 		if (pSpecialAbilityMemoryBaseLocation == nullptr)
 		{
