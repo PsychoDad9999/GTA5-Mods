@@ -67,7 +67,7 @@ UINT64* Memory::findPattern(const char* pattern, const char* mask, BYTE* startAd
 		// skip page if type doesn't match
 		if (type == PageType::Any || mbi.Type == type)
 		{
-			if (mbi.State == MEM_COMMIT && mbi.Protect == PAGE_READWRITE)
+			if (mbi.State == MEM_COMMIT && (mbi.Protect == PAGE_READWRITE /*|| mbi.Protect == PAGE_EXECUTE_READWRITE*/))
 			{				
 				if (directAccess)
 				{

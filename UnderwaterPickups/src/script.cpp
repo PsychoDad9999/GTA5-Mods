@@ -20,11 +20,10 @@
 #include <chrono>
 #include <iostream>
 
-
 // ----------------------------------------------------------------------------
 
 //#define DEBUG_CONSOLE			// opens debug console for usage of printf
-//#define DEBUG_DRAW_OVERLAY		// draw status messages ingame 
+//#define DEBUG_DRAW_OVERLAY	// draw status messages ingame 
 
 // ----------------------------------------------------------------------------
 
@@ -82,7 +81,6 @@ void handleDelayedRespawn(Vector3 playerLocation)
 			g_packagesManager.purge();
 		}
 
-
 		*g_pNextSpawnDateTime = closestPackage->nextSpawnTime.getRawData();
 	}
 
@@ -93,9 +91,9 @@ void handleDelayedRespawn(Vector3 playerLocation)
 
 		if (!g_isScriptRunning && isScriptRunning)
 		{
-			DateTime currentIngameTime = DateTime::getIngameTime();			
-
 			// Script changed from not running to running
+			DateTime currentIngameTime = DateTime::getIngameTime();		
+					
 			if (DateTime::compare(currentIngameTime, closestPackage->nextSpawnTime) > 0)
 			{
 				showNotification("Nearby underwater pickup has respawned.", NOTIFICATION_RESPAWN);
@@ -106,7 +104,11 @@ void handleDelayedRespawn(Vector3 playerLocation)
 
 				int minutesLeft = DateTime::getTimeDifferenceInSeconds(currentIngameTime, closestPackage->nextSpawnTime) / 60;
 				
-				if (minutesLeft <= 120)
+				if (minutesLeft <= 1)
+				{
+					sprintf_s(nextRespawnTimeText, "Nearby underwater pickup will respawn in 1 minute.");
+				}
+				else if (minutesLeft <= 120)
 				{
 					sprintf_s(nextRespawnTimeText, "Nearby underwater pickup will respawn in %d minutes.", minutesLeft);
 				}
@@ -179,11 +181,7 @@ void update()
 		}
 	}
 
-	#ifdef DEBUG_DRAW_OVERLAY
-	// draw debug overlay
-	DebugFrameOverlay::drawDebugOverlay(g_pNextSpawnDateTime);
-	#endif
-
+	
 	// Game version not supported
 	if (g_pNextSpawnDateTime == nullptr)
 		return;
@@ -208,6 +206,11 @@ void update()
 	{
 		handleDelayedRespawn(World::getPosition(playerPed));
 	}	
+
+	#ifdef DEBUG_DRAW_OVERLAY
+	// draw debug overlay
+	DebugFrameOverlay::drawDebugOverlay(g_pNextSpawnDateTime);
+	#endif
 }
 
 
@@ -230,7 +233,7 @@ void runScript()
 	g_pNextSpawnDateTime = Globals::getGlobal(eGlobals::UNDERWATER_PICKUP_RESPAWN_TIME, static_cast<eExtGameVersion>(getGameVersion()));
 
 	if (g_pNextSpawnDateTime == nullptr)
-	{
+	{		
 		g_pNextSpawnDateTime = MemoryPattern::getPickupSpawnTimeGlobal();
 	}
 

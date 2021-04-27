@@ -9,7 +9,7 @@
 class DebugFrameOverlay
 {
 public:
-	static void drawDebugOverlay(const UINT64* pVar);
+	static void drawDebugOverlay(UINT64* pVar);
 
 private:
 	DebugFrameOverlay() {}

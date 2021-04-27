@@ -8,12 +8,13 @@
 #include <framework/system/dateTime.h>
 #include <framework/system/hashkey.h>
 #include <framework/hud/text.h>
+#include <framework/memory/memory.h>
 
 
 // ----------------------------------------------------------------------------
 /// <summery>Draw some ingame debug information</summery>
 // ----------------------------------------------------------------------------
-void DebugFrameOverlay::drawDebugOverlay(const UINT64* pVar)
+void DebugFrameOverlay::drawDebugOverlay(UINT64* pVar)
 {
 	Ped playerPed = PLAYER::PLAYER_PED_ID();
 		
@@ -24,15 +25,6 @@ void DebugFrameOverlay::drawDebugOverlay(const UINT64* pVar)
 
 	Text::displayTextForCurrentFrame(playerPosText, 0.1, 0.2, true);
 
-	
-	if (HashKey::GetHashKey("pickup_money_case") == 0xCE6FDD6B)
-	{
-		Text::displayTextForCurrentFrame("Same Hash", 0.9, 0.10, true);
-	}
-	else
-	{
-		Text::displayTextForCurrentFrame("Hash doesn't match", 0.9, 0.10, false);
-	}
 
 	
 	BOOL scriptExist = SCRIPT::DOES_SCRIPT_EXIST("underwaterpickups");
@@ -56,7 +48,6 @@ void DebugFrameOverlay::drawDebugOverlay(const UINT64* pVar)
 	else
 	{
 		Text::displayTextForCurrentFrame("Script not loaded", 0.1, 0.15, false);
-
 	}
 
 
@@ -65,68 +56,53 @@ void DebugFrameOverlay::drawDebugOverlay(const UINT64* pVar)
 	Text::displayTextForCurrentFrame(valueText, 0.1, 0.25, true);
 
 
-	/*
-	if (pVar == nullptr)
-	{
-		Text::displayTextForCurrentFrame("Pointer is NULL", 0.1, 0.15, false);
-	}
-	else
-	{
-		Text::displayTextForCurrentFrame("Pointer is valid", 0.1, 0.15, true);
-	}
 
-	if (pVar != nullptr)
-	{
-		char valueText[256];
-		sprintf_s(valueText, "Value: %lld", *pVar);
-		Text::displayTextForCurrentFrame(valueText, 0.1, 0.20, true);
-
-		Text::displayTextForCurrentFrame("Next HQ Spawn: Time not set", 0.1, 0.25, true);		
-	}
-	*/
-
-
-
-	char currentIngameYearText[256];	
-	sprintf_s(currentIngameYearText, "%d:%d:%d %d.%d.%d [N]", TIME::GET_CLOCK_HOURS(), TIME::GET_CLOCK_MINUTES(), TIME::GET_CLOCK_SECONDS(), TIME::GET_CLOCK_DAY_OF_MONTH(), TIME::GET_CLOCK_MONTH() + 1, TIME::GET_CLOCK_YEAR());
-	Text::displayTextForCurrentFrame(currentIngameYearText, 0.9, 0.15, true);
+	Text::displayTextForCurrentFrame("Time", 0.75, 0.10, true);
 
 
 	DateTime dateTime = DateTime::getIngameTime();
 
 	char currentIngameDateTimeText[256];
-	sprintf_s(currentIngameDateTimeText, "%d:%d:%d %d.%d.%d [I]", dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond(), dateTime.getDay(), dateTime.getMonth(), dateTime.getYear());
+	sprintf_s(currentIngameDateTimeText, "%02d:%02d:%02d %02d.%02d.%02d [%#010x][Time]", dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond(), dateTime.getDay(), dateTime.getMonth(), dateTime.getYear(), dateTime.getRawData());
 
-
-	Text::displayTextForCurrentFrame(currentIngameDateTimeText, 0.9, 0.20, true);
-
+	Text::displayTextForCurrentFrame(currentIngameDateTimeText, 0.75, 0.15, true);
 
 
 
-	dateTime = DateTime(DateTime::TIME_NOT_SET);
+	int rawValue = 0;
 
-	char customIngameDateTimeText[256];
-	sprintf_s(customIngameDateTimeText, "%d:%d:%d %d.%d.%d [C]", dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond(), dateTime.getDay(), dateTime.getMonth(), dateTime.getYear());
-
-
-	Text::displayTextForCurrentFrame(customIngameDateTimeText, 0.9, 0.25, true);
-
-/*
-	if (oldVal == NOT_SET)
+	if (Memory::readInt32FromMemory(pVar, &rawValue, true, true))
 	{
-		Text::displayTextForCurrentFrame("Not set [O]", 0.9, 0.30, false);
+		DateTime spawnTime = DateTime(rawValue);
+
+		char ct2[256];
+		sprintf_s(ct2, "%02d:%02d:%02d %02d.%02d.%02d [%#010x][Spawn]", spawnTime.getHour(), spawnTime.getMinute(), spawnTime.getSecond(), spawnTime.getDay(), spawnTime.getMonth(), spawnTime.getYear(), spawnTime.getRawData());
+
+		Text::displayTextForCurrentFrame(ct2, 0.75, 0.20, spawnTime.getRawData() != DateTime::TIME_NOT_SET);
+
+
+		if (spawnTime.getRawData() != DateTime::TIME_NOT_SET)
+		{
+			int secondsLeft = DateTime::getTimeDifferenceInSeconds(dateTime, spawnTime);
+
+			char ct3[256];
+			sprintf_s(ct3, "Next Spawn in %d s", secondsLeft);
+
+			Text::displayTextForCurrentFrame(ct3, 0.75, 0.25, true);
+		}
+		else
+		{
+			Text::displayTextForCurrentFrame("Next spawn in [NOT AVAILABLE]", 0.75, 0.25, false);
+		}		
+
+		/*
+		int timeCmp = dateTime.compareTo(spawnTime);
+
+		char ct4[256];
+		sprintf_s(ct4, "Time Cmp: %d", timeCmp);
+
+		Text::displayTextForCurrentFrame(ct4, 0.75, 0.30, true);*/
 	}
-	else
-	{
-		dateTime = DateTime(static_cast<UINT32>(oldVal));
-
-		char oldSpawnDateTimeText[256];
-		sprintf_s(oldSpawnDateTimeText, "%d:%d:%d %d.%d.%d [O]", dateTime.getHour(), dateTime.getMinute(), dateTime.getSecond(), dateTime.getDay(), dateTime.getMonth(), dateTime.getYear());
-
-		Text::displayTextForCurrentFrame(oldSpawnDateTimeText, 0.9, 0.30, true);
-	}
-	*/
-
 }
 
 // ----------------------------------------------------------------------------
