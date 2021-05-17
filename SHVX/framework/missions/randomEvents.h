@@ -2,6 +2,9 @@
 
 #pragma once
 
+#include <Windows.h>
+#include "inc/types.h"
+
 // ----------------------------------------------------------------------------
 
 enum eRandomEvent
@@ -42,6 +45,25 @@ enum eRandomEvent
 	RE_SEAPLANE = 32,
 	RE_MONKEYPHOTO = 33,
 };
+
+
+struct RandomEventStruct
+{
+	INT32 SomeStat; 
+	INT32 Offset0;
+	INT32 StartedGameTimer;
+	INT32 Offset1;
+	INT32 EventVariation;
+	INT32 Offset2;
+	INT32 EventIndex;
+	INT32 Offset3; 
+	BOOL HasStarted;
+	INT32 Offset4;
+	INT32 StoppedGameTimer;
+	INT32 Offset5;
+	Vector3 ScriptPosition;
+};
+
 
 
 class RandomEvents
