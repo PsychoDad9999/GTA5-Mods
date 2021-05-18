@@ -114,6 +114,9 @@
     <ClInclude Include="framework\system\math.h">
       <Filter>framework\system</Filter>
     </ClInclude>
+    <ClInclude Include="framework\hud\scaleform.h">
+      <Filter>framework\hud</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework\diagnostics\debugConsole.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="framework\system\math.cpp">
       <Filter>framework\system</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\hud\scaleform.cpp">
+      <Filter>framework\hud</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

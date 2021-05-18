@@ -26,6 +26,7 @@
     <ClCompile Include="framework\world\model.cpp" />
     <ClCompile Include="framework\world\rope.cpp" />
     <ClCompile Include="framework\world\world.cpp" />
+    <ClCompile Include="framework\hud\scaleform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework\audio\audioMemoryResource.h" />
@@ -54,6 +55,7 @@
     <ClInclude Include="..\SHV\inc\types.h" />
     <ClInclude Include="framework\system\dateTime.h" />
     <ClInclude Include="framework\diagnostics\debugConsole.h" />
+    <ClInclude Include="framework\hud\scaleform.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
