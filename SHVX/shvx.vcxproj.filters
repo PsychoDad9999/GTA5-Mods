@@ -34,6 +34,9 @@
     <Filter Include="SHV">
       <UniqueIdentifier>{CA294FA0-DB86-494B-84F2-106EEFEFF2A7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="framework\ini">
+      <UniqueIdentifier>{4677aba8-ed43-44af-98b9-bd5fc9373346}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SHV\inc\main.h">
@@ -117,6 +120,18 @@
     <ClInclude Include="framework\hud\scaleform.h">
       <Filter>framework\hud</Filter>
     </ClInclude>
+    <ClInclude Include="framework\world\physics.h">
+      <Filter>framework\world</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\ini\fileHelper.h">
+      <Filter>framework\ini</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\ini\stringUtils.h">
+      <Filter>framework\ini</Filter>
+    </ClInclude>
+    <ClInclude Include="framework\ini\typeConverter.h">
+      <Filter>framework\ini</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework\diagnostics\debugConsole.cpp">
@@ -178,6 +193,18 @@
     </ClCompile>
     <ClCompile Include="framework\hud\scaleform.cpp">
       <Filter>framework\hud</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\world\physics.cpp">
+      <Filter>framework\world</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\ini\fileHelper.cpp">
+      <Filter>framework\ini</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\ini\stringUtils.cpp">
+      <Filter>framework\ini</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\ini\typeConverter.cpp">
+      <Filter>framework\ini</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

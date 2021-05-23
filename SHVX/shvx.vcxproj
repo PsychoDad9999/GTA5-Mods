@@ -13,6 +13,9 @@
     <ClCompile Include="framework\hud\helpMessages.cpp" />
     <ClCompile Include="framework\hud\notifications.cpp" />
     <ClCompile Include="framework\hud\text.cpp" />
+    <ClCompile Include="framework\ini\fileHelper.cpp" />
+    <ClCompile Include="framework\ini\stringUtils.cpp" />
+    <ClCompile Include="framework\ini\typeConverter.cpp" />
     <ClCompile Include="framework\input\keyboard.cpp" />
     <ClCompile Include="framework\input\keyboardMapper.cpp" />
     <ClCompile Include="framework\memory\memory.cpp" />
@@ -24,6 +27,7 @@
     <ClCompile Include="framework\system\math.cpp" />
     <ClCompile Include="framework\system\module.cpp" />
     <ClCompile Include="framework\world\model.cpp" />
+    <ClCompile Include="framework\world\physics.cpp" />
     <ClCompile Include="framework\world\rope.cpp" />
     <ClCompile Include="framework\world\world.cpp" />
     <ClCompile Include="framework\hud\scaleform.cpp" />
@@ -37,6 +41,9 @@
     <ClInclude Include="framework\hud\helpMessages.h" />
     <ClInclude Include="framework\hud\notifications.h" />
     <ClInclude Include="framework\hud\text.h" />
+    <ClInclude Include="framework\ini\fileHelper.h" />
+    <ClInclude Include="framework\ini\stringUtils.h" />
+    <ClInclude Include="framework\ini\typeConverter.h" />
     <ClInclude Include="framework\input\keyboard.h" />
     <ClInclude Include="framework\input\keyboardMapper.h" />
     <ClInclude Include="framework\input\keydefines.h" />
@@ -46,6 +53,7 @@
     <ClInclude Include="framework\system\math.h" />
     <ClInclude Include="framework\system\module.h" />
     <ClInclude Include="framework\world\model.h" />
+    <ClInclude Include="framework\world\physics.h" />
     <ClInclude Include="framework\world\player.h" />
     <ClInclude Include="framework\world\rope.h" />
     <ClInclude Include="framework\world\world.h" />
