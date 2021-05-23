@@ -9,9 +9,6 @@
   <ItemGroup>
     <ClCompile Include="src\memoryPattern.cpp" />
     <ClCompile Include="src\settings\settings.cpp" />
-    <ClCompile Include="src\utils\stringUtils.cpp" />
-    <ClCompile Include="src\utils\typeConverter.cpp" />
-    <ClCompile Include="src\utils\fileHelper.cpp" />
     <ClCompile Include="src\dbg\debugFrameOverlay.cpp" />
     <ClCompile Include="src\package\hiddenPackagesManager.cpp" />
     <ClCompile Include="src\dllmain.cpp" />
@@ -20,9 +17,6 @@
   <ItemGroup>
     <ClInclude Include="src\memoryPattern.h" />
     <ClInclude Include="src\settings\settings.h" />
-    <ClInclude Include="src\utils\stringUtils.h" />
-    <ClInclude Include="src\utils\typeConverter.h" />
-    <ClInclude Include="src\utils\fileHelper.h" />
     <ClInclude Include="src\dbg\debugFrameOverlay.h" />
     <ClInclude Include="src\package\hiddenPackage.h" />
     <ClInclude Include="src\package\hiddenPackagesManager.h" />

@@ -7,9 +7,6 @@
     <Filter Include="settings">
       <UniqueIdentifier>{7ABBDFE6-BB96-4C3A-BE18-4B8E6794175A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="utils">
-      <UniqueIdentifier>{A62E25AE-02E8-4B22-9B0B-E48EDB825849}</UniqueIdentifier>
-    </Filter>
     <Filter Include="config">
       <UniqueIdentifier>{85bff988-5230-4dcb-9c11-77dbeee7e088}</UniqueIdentifier>
     </Filter>
@@ -17,15 +14,6 @@
   <ItemGroup>
     <ClCompile Include="src\settings\settings.cpp">
       <Filter>settings</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\stringUtils.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\typeConverter.cpp">
-      <Filter>utils</Filter>
-    </ClCompile>
-    <ClCompile Include="src\utils\fileHelper.cpp">
-      <Filter>utils</Filter>
     </ClCompile>
     <ClCompile Include="src\dbg\debugFrameOverlay.cpp">
       <Filter>dbg</Filter>
@@ -40,15 +28,6 @@
   <ItemGroup>
     <ClInclude Include="src\settings\settings.h">
       <Filter>settings</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\stringUtils.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\typeConverter.h">
-      <Filter>utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utils\fileHelper.h">
-      <Filter>utils</Filter>
     </ClInclude>
     <ClInclude Include="src\dbg\debugFrameOverlay.h">
       <Filter>dbg</Filter>
