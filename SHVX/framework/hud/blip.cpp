@@ -77,6 +77,9 @@ Blip MapBlip::AddBlipForEntity(Entity entity, int spriteID, const char* name, bo
 	if (showRoute)
 	{
 		UI::SET_BLIP_ROUTE(blip, TRUE);
+		
+		if(color != -1)
+			UI::SET_BLIP_ROUTE_COLOUR(blip, color);
 	}
 
 
