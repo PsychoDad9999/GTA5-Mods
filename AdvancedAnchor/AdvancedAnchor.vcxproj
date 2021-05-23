@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\hud\blip.cpp" />
+    <ClCompile Include="src\input\controls.cpp" />
+    <ClCompile Include="src\settings\settings.cpp" />
+    <ClCompile Include="src\vehicle\anchoredVehicleManager.cpp" />
+    <ClCompile Include="src\dbg\debugFrameOverlay.cpp" />
+    <ClCompile Include="src\dbg\debugVehicleSpawner.cpp" />
+    <ClCompile Include="src\dllmain.cpp" />
+    <ClCompile Include="src\script.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\hud\blip.h" />
+    <ClInclude Include="src\input\controls.h" />
+    <ClInclude Include="src\settings\settings.h" />
+    <ClInclude Include="src\vehicle\anchoredVehicle.h" />
+    <ClInclude Include="src\vehicle\anchoredVehicleManager.h" />
+    <ClInclude Include="src\vehicle\vehicleEntity.h" />
+    <ClInclude Include="src\dbg\debugFrameOverlay.h" />
+    <ClInclude Include="src\dbg\debugVehicleSpawner.h" />
+    <ClInclude Include="src\resource.h" />
+    <ClInclude Include="src\script.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\AdvancedAnchor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="config\AdvancedAnchor.ini">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SHVX\shvx.vcxproj">
+      <Project>{94a13f4e-df0a-49c2-a7f9-8186904137dd}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{B5D710A8-C2B2-4EB1-8C25-DAF9FD47082F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>AdvancedAnchor</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141_xp</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetExt>.asi</TargetExt>
+    <OutDir>build\bin\$(Configuration)\</OutDir>
+    <IntDir>build\obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;ADVANCEDANCHOR_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ConformanceMode>false</ConformanceMode>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\SHV;$(ProjectDir)..\SHVX;$(ProjectDir)src</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>..\SHVX\lib\ScriptHookV.lib;%(AdditionalOptions)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
+      <EnableUAC>false</EnableUAC>
+      <AdditionalDependencies>Kernel32.lib;Winmm.lib;..\SHV\lib\ScriptHookV.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

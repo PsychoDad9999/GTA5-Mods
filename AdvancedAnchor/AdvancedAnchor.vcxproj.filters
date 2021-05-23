@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="dbg">
+      <UniqueIdentifier>{C0EFC511-C1ED-4DE3-9D93-073FC18B60F3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hud">
+      <UniqueIdentifier>{F6C6A6F0-4B21-4BF4-8624-BE2F9FF57460}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="settings">
+      <UniqueIdentifier>{2B735DD3-F115-411C-A215-B070906E403F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vehicle">
+      <UniqueIdentifier>{2945E372-23F4-4AC1-851A-C887151F4404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{3c196fea-ae36-4e23-aa1b-a18a725a947a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="input">
+      <UniqueIdentifier>{cca9b8c5-40e3-4e97-ba4c-ccbd70bb400f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\hud\blip.cpp">
+      <Filter>hud</Filter>
+    </ClCompile>
+    <ClCompile Include="src\settings\settings.cpp">
+      <Filter>settings</Filter>
+    </ClCompile>
+    <ClCompile Include="src\vehicle\anchoredVehicleManager.cpp">
+      <Filter>vehicle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dbg\debugFrameOverlay.cpp">
+      <Filter>dbg</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dbg\debugVehicleSpawner.cpp">
+      <Filter>dbg</Filter>
+    </ClCompile>
+    <ClCompile Include="src\dllmain.cpp">
+    </ClCompile>
+    <ClCompile Include="src\script.cpp">
+    </ClCompile>
+    <ClCompile Include="src\input\controls.cpp">
+      <Filter>input</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\hud\blip.h">
+      <Filter>hud</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settings\settings.h">
+      <Filter>settings</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vehicle\anchoredVehicle.h">
+      <Filter>vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vehicle\anchoredVehicleManager.h">
+      <Filter>vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\vehicle\vehicleEntity.h">
+      <Filter>vehicle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dbg\debugFrameOverlay.h">
+      <Filter>dbg</Filter>
+    </ClInclude>
+    <ClInclude Include="src\dbg\debugVehicleSpawner.h">
+      <Filter>dbg</Filter>
+    </ClInclude>
+    <ClInclude Include="src\resource.h">
+    </ClInclude>
+    <ClInclude Include="src\script.h">
+    </ClInclude>
+    <ClInclude Include="src\input\controls.h">
+      <Filter>input</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="resources\AdvancedAnchor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="config\AdvancedAnchor.ini" />
+  </ItemGroup>
+</Project>
