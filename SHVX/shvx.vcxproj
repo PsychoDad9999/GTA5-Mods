@@ -9,6 +9,7 @@
   <ItemGroup>
     <ClCompile Include="framework\audio\audioMemoryResource.cpp" />
     <ClCompile Include="framework\audio\audioPlayer.cpp" />
+    <ClCompile Include="framework\audio\audioMemoryWave.cpp" />
     <ClCompile Include="framework\hud\blip.cpp" />
     <ClCompile Include="framework\hud\helpMessages.cpp" />
     <ClCompile Include="framework\hud\notifications.cpp" />
@@ -35,6 +36,7 @@
   <ItemGroup>
     <ClInclude Include="framework\audio\audioMemoryResource.h" />
     <ClInclude Include="framework\audio\audioPlayer.h" />
+    <ClInclude Include="framework\audio\audioMemoryWave.h" />
     <ClInclude Include="framework\game\gameVersion.h" />
     <ClInclude Include="framework\game\globals.h" />
     <ClInclude Include="framework\hud\blip.h" />

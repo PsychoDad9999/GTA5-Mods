@@ -132,6 +132,9 @@
     <ClInclude Include="framework\ini\typeConverter.h">
       <Filter>framework\ini</Filter>
     </ClInclude>
+    <ClInclude Include="framework\audio\audioMemoryWave.h">
+      <Filter>framework\audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework\diagnostics\debugConsole.cpp">
@@ -205,6 +208,9 @@
     </ClCompile>
     <ClCompile Include="framework\ini\typeConverter.cpp">
       <Filter>framework\ini</Filter>
+    </ClCompile>
+    <ClCompile Include="framework\audio\audioMemoryWave.cpp">
+      <Filter>framework\audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

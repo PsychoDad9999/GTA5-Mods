@@ -13,11 +13,11 @@ class AudioPlayer
 {
 public:
 	static void dispose();
-	static void play(int resourceID);	
+	static void play(int resourceID, int volumePercent);
 
 private:
 	static bool contains(const int resourceID);
-	static bool add(const int resourceID);
+	static bool add(const int resourceID, int volumePercent);
 	static AudioMemoryResource* get(const int resourceID);
 	
 private:

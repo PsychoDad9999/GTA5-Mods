@@ -10,12 +10,12 @@ std::map<int, AudioMemoryResource*> AudioPlayer::m_soundDictionary;
 /// <summery>Play a sound from a resource</summery>
 /// <param name="resourceID">resource id</param>
 // ----------------------------------------------------------------------------
-void AudioPlayer::play(int resourceID)
-{
+void AudioPlayer::play(int resourceID, int volumePercent)
+{	
 	if (!contains(resourceID))
 	{
 		// Create sound dynamically and add to dictionary
-		add(resourceID);
+		add(resourceID, volumePercent);
 	}
 
 	// Get Audio Memory Resource from Dictionary
@@ -62,12 +62,12 @@ AudioMemoryResource* AudioPlayer::get(const int resourceID)
 /// <param name="resourceID">resource id</param>
 /// <returns>True if new audio memory resource has been created and added to the dictionary, otherwise false</returns>
 // ----------------------------------------------------------------------------
-bool AudioPlayer::add(const int resourceID)
+bool AudioPlayer::add(const int resourceID, int volumePercent)
 {
 	if (contains(resourceID))
 		return false;
 
-	AudioMemoryResource* pSound = new AudioMemoryResource(resourceID);
+	AudioMemoryResource* pSound = new AudioMemoryResource(resourceID, volumePercent);
 
 	m_soundDictionary[resourceID] = pSound;
 	
