@@ -38,8 +38,6 @@ AudioMemoryResource::AudioMemoryResource(int resourceId, unsigned int volumePerc
 		}
 		else
 		{
-			printf("Audio Resource (%i): %p, Size: %zi\n", resourceId, pMemResource, resourceSize);
-
 			bool changeVolumeLevel = true;
 
 			if (changeVolumeLevel)
@@ -59,8 +57,6 @@ AudioMemoryResource::AudioMemoryResource(int resourceId, unsigned int volumePerc
 					// change playback pointer
 					m_playback.ptr = pAudioBuffer;
 					m_playback.size_bytes = resourceSize;
-
-					printf("Using AudioMemoryWave\n");
 				}
 				else
 				{
@@ -73,8 +69,6 @@ AudioMemoryResource::AudioMemoryResource(int resourceId, unsigned int volumePerc
 					// failed to create AudioMemoryWave, use Memresource as fallback
 					m_playback.ptr = pMemResource;
 					m_playback.size_bytes = resourceSize;
-
-					printf("Failed to create AudioMemoryWave. Using Memresource.\n");
 				}
 			}
 			else
