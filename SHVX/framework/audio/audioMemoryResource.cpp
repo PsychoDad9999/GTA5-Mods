@@ -10,7 +10,7 @@
 /// <summery>Constructor. Loads a wave audio resource into memory</summery>
 /// <param name="resourceID">resource ID</param>
 // ----------------------------------------------------------------------------
-AudioMemoryResource::AudioMemoryResource(int resourceId, int volumePercent)
+AudioMemoryResource::AudioMemoryResource(int resourceId, unsigned int volumePercent)
 {
 	m_playback.size_bytes = 0;
 	m_playback.ptr = nullptr;

@@ -19,15 +19,15 @@ public:
 	};
 
 public:
-	AudioMemoryResource(int resourceId, int volumePercent); // Ctor. Loads a wave audio resource into memory
+	AudioMemoryResource(int resourceId, unsigned int volumePercent); // Ctor. Loads a wave audio resource into memory
 	~AudioMemoryResource();
 
 	bool playAsync();
 
-	int getVolumePercent() { return m_volumePercent; }
+	unsigned int getVolumePercent() { return m_volumePercent; }
 
 private:
-	int m_volumePercent = 100;
+	unsigned int m_volumePercent = 100;
 
 private:
 	HGLOBAL m_hResourceMemory = nullptr;

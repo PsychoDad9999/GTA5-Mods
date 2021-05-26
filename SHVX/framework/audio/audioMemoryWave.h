@@ -17,7 +17,7 @@ public:
 	};
 
 public:
-	AudioMemoryWave(void* pAddress, std::size_t size, int volumePercent);
+	AudioMemoryWave(void* pAddress, std::size_t size, unsigned int volumePercent);
 	~AudioMemoryWave();
 
 	bool isValid() { return m_isValid; }

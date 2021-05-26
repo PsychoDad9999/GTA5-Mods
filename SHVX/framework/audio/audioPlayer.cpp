@@ -10,7 +10,7 @@ std::map<int, AudioMemoryResource*> AudioPlayer::m_soundDictionary;
 /// <summery>Play a sound from a resource</summery>
 /// <param name="resourceID">resource id</param>
 // ----------------------------------------------------------------------------
-void AudioPlayer::play(int resourceID, int volumePercent)
+void AudioPlayer::play(int resourceID, unsigned int volumePercent)
 {	
 	if (!contains(resourceID))
 	{

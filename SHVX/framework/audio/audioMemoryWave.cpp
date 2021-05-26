@@ -10,7 +10,7 @@
 /// <summery>Constructor.</summery>
 /// <param name="pAddress">memory address of wave data. Memory must be writable!</param>
 // ----------------------------------------------------------------------------
-AudioMemoryWave::AudioMemoryWave(void* pAddress, std::size_t size, int volumePercent)
+AudioMemoryWave::AudioMemoryWave(void* pAddress, std::size_t size, unsigned int volumePercent)
 {
 	chunkHeader* pRIFFHeaderChunk = getChunkHeader(reinterpret_cast<BYTE*>(pAddress), "RIFF");
 
@@ -48,9 +48,6 @@ AudioMemoryWave::AudioMemoryWave(void* pAddress, std::size_t size, int volumePer
 	 
 	if (volumePercent != 100) // don't modify volume on 100%
 	{
-		if (volumePercent < 0)
-			volumePercent = 0;
-
 		modifyVolume(pDataHeaderChunk, pFormat, volumePercent / 100.0f);
 	}
 	
