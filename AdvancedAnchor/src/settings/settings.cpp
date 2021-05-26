@@ -22,6 +22,7 @@ bool Settings::loadFromFile(Settings::ModSettings& settings, const wchar_t* file
 	const LPCWSTR groupKeys = TEXT("Keys");
 	const LPCWSTR groupVehicles = TEXT("Vehicles");
 	const LPCWSTR groupHUD = TEXT("HUD");
+	const LPCWSTR groupAudio = TEXT("Audio");
 	const LPCWSTR groupMisc = TEXT("Misc");
 
 	std::wstring path = Module::getCurrentModulePath(); // includes trailing slash
@@ -63,6 +64,13 @@ bool Settings::loadFromFile(Settings::ModSettings& settings, const wchar_t* file
 	settings.hud.allowHelpMessages = TypeConverter::intToBoolSafe(GetPrivateProfileInt(groupHUD, TEXT("AllowHelpMessages"), 1, iniFile));
 	settings.hud.showAnchoredVehiclesOnMap = TypeConverter::intToBoolSafe(GetPrivateProfileInt(groupHUD, TEXT("ShowAnchoredVehiclesOnMap"), 1, iniFile));
 	settings.hud.useShortRangeMapMarkers = TypeConverter::intToBoolSafe(GetPrivateProfileInt(groupHUD, TEXT("UseShortRangeMapMarkers"), 1, iniFile));
+
+	// Audio settings
+	settings.audio.allowAnchorSounds = TypeConverter::intToBoolSafe(GetPrivateProfileInt(groupVehicles, TEXT("AllowAnchorSoundEffects"), 1, iniFile));
+	settings.audio.volumeAnchorBoat = TypeConverter::intToULongSafe(GetPrivateProfileInt(groupAudio, TEXT("VolumeAnchorBoat"), 100, iniFile), 0, 200);
+	settings.audio.volumeAnchorJetski = TypeConverter::intToULongSafe(GetPrivateProfileInt(groupAudio, TEXT("VolumeAnchorJetski"), 100, iniFile), 0, 200);
+	settings.audio.volumeAnchorSub = TypeConverter::intToULongSafe(GetPrivateProfileInt(groupAudio, TEXT("VolumeAnchorSub"), 100, iniFile), 0, 200);
+	settings.audio.volumeAnchorSeaPlane = TypeConverter::intToULongSafe(GetPrivateProfileInt(groupAudio, TEXT("VolumeAnchorSeaPlane"), 100, iniFile), 0, 200);
 
 	// MISC settings	
 	settings.misc.allowHoldKeyToEnterSubmersible = TypeConverter::intToBoolSafe(GetPrivateProfileInt(groupMisc, TEXT("AllowHoldKeyToEnterSubmersible"), 1, iniFile));

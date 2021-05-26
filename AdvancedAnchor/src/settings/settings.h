@@ -39,8 +39,12 @@ public:
 		struct AudioSettings
 		{
 			bool allowAnchorSounds;
+			unsigned int volumeAnchorBoat;
+			unsigned int volumeAnchorJetski;
+			unsigned int volumeAnchorSub;
+			unsigned int volumeAnchorSeaPlane;
 
-			AudioSettings() : allowAnchorSounds(true) {}
+			AudioSettings() : allowAnchorSounds(true), volumeAnchorBoat(100), volumeAnchorJetski(100), volumeAnchorSub(100), volumeAnchorSeaPlane(100) {}
 		};
 
 

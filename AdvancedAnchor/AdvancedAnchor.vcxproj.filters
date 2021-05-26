@@ -78,6 +78,8 @@
     <ResourceCompile Include="resources\AdvancedAnchor.rc" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="config\AdvancedAnchor.ini" />
+    <CopyFileToFolders Include="config\AdvancedAnchor.ini">
+	<Filter>config</Filter>
+    </CopyFileToFolders>
   </ItemGroup>
 </Project>

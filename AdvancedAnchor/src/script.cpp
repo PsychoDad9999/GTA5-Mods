@@ -494,29 +494,34 @@ void playAudio(eVehicleType vehicle, bool isAnchorDirectionDown)
 	if (g_settings.audio.allowAnchorSounds)
 	{
 		int resourceID;
+		int volume = 100;
 
 		switch (vehicle)
 		{
 		case eVehicleType::VehicleTypeJetSki:
 			resourceID = isAnchorDirectionDown ? IDR_WAVE_JETSKI_ANCHOR_DOWN : IDR_WAVE_JETSKI_ANCHOR_UP;
+			volume = g_settings.audio.volumeAnchorJetski;
 			break;
 
 		case eVehicleType::VehicleTypePlane:
 			resourceID = isAnchorDirectionDown ? IDR_WAVE_PLANE_ANCHOR_DOWN : IDR_WAVE_PLANE_ANCHOR_UP;
+			volume = g_settings.audio.volumeAnchorSeaPlane;
 			break;
 
 		case eVehicleType::VehicleTypeBoat:
 			resourceID = isAnchorDirectionDown ? IDR_WAVE_BOAT_ANCHOR_DOWN : IDR_WAVE_BOAT_ANCHOR_UP;
+			volume = g_settings.audio.volumeAnchorBoat;
 			break;
 
 		case eVehicleType::VehicleTypeSub:
 			resourceID = isAnchorDirectionDown ? IDR_WAVE_SUB_ANCHOR_DOWN : IDR_WAVE_SUB_ANCHOR_UP;
+			volume = g_settings.audio.volumeAnchorSub;
 			break;
 
 		case eVehicleType::VehicleTypeHeli:
 			resourceID = isAnchorDirectionDown ? IDR_WAVE_PLANE_ANCHOR_DOWN : IDR_WAVE_PLANE_ANCHOR_UP;
+			volume = g_settings.audio.volumeAnchorSeaPlane;
 			break;
-
 
 		default:
 		case VehicleTypeUnknown:
@@ -524,7 +529,7 @@ void playAudio(eVehicleType vehicle, bool isAnchorDirectionDown)
 		}
 
 		// play audio
-		AudioPlayer::play(resourceID);
+		AudioPlayer::play(resourceID, volume);
 	}
 }
 
