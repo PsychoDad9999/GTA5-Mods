@@ -66,7 +66,7 @@ bool Settings::loadFromFile(Settings::ModSettings& settings, const wchar_t* file
 	settings.hud.useShortRangeMapMarkers = TypeConverter::intToBoolSafe(GetPrivateProfileInt(groupHUD, TEXT("UseShortRangeMapMarkers"), 1, iniFile));
 
 	// Audio settings
-	settings.audio.allowAnchorSounds = TypeConverter::intToBoolSafe(GetPrivateProfileInt(groupVehicles, TEXT("AllowAnchorSoundEffects"), 1, iniFile));
+	settings.audio.allowAnchorSounds = TypeConverter::intToBoolSafe(GetPrivateProfileInt(groupAudio, TEXT("AllowAnchorSoundEffects"), 1, iniFile));
 	settings.audio.volumeAnchorBoat = TypeConverter::intToULongSafe(GetPrivateProfileInt(groupAudio, TEXT("VolumeAnchorBoat"), 100, iniFile), 0, 200);
 	settings.audio.volumeAnchorJetski = TypeConverter::intToULongSafe(GetPrivateProfileInt(groupAudio, TEXT("VolumeAnchorJetski"), 100, iniFile), 0, 200);
 	settings.audio.volumeAnchorSub = TypeConverter::intToULongSafe(GetPrivateProfileInt(groupAudio, TEXT("VolumeAnchorSub"), 100, iniFile), 0, 200);
