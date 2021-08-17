@@ -181,7 +181,20 @@ void update()
 		}
 	}
 
-	
+	/*
+	UINT64* pDebug = Globals::getGlobal(eGlobals::UNDERWATER_PICKUP_RESPAWN_TIME, static_cast<eExtGameVersion>(getGameVersion()));
+
+	char text[256];
+	sprintf_s(text, "Global: %p", pDebug);
+
+	Text::displayTextForCurrentFrame(text, 0.2, 0.2, true);
+
+	sprintf_s(text, "Offset: %p", (pDebug + 112));
+	Text::displayTextForCurrentFrame(text, 0.2, 0.25, true);
+
+	sprintf_s(text, "Scan Global: %p", (g_pNextSpawnDateTime));
+	Text::displayTextForCurrentFrame(text, 0.2, 0.30, true);*/
+
 	// Game version not supported
 	if (g_pNextSpawnDateTime == nullptr)
 		return;

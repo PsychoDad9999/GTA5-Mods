@@ -28,7 +28,7 @@ bool MemoryPattern::isValidMatch(UINT64** pMatch, bool directAccess)
 		if (value == 0)
 		{
 			// Pointer offset
-			UINT64* pMatchWithOffset = *pMatch - 107;
+			UINT64* pMatchWithOffset = *pMatch - 112;
 			INT32 value = 0;
 
 			// make another consistency check, to make sure we are reading the correct memory address

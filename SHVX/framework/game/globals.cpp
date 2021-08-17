@@ -40,6 +40,10 @@ UINT64* Globals::getGlobal(eGlobals global, eExtGameVersion gameVersion)
 		case eExtGameVersion::BUILD_1_0_2245_0_STEAM:
 		case eExtGameVersion::BUILD_1_0_2245_0_NOSTEAM:
 			return getGlobalPtr(2463897);
+
+		case eExtGameVersion::BUILD_1_0_2372_0_STEAM:
+		case eExtGameVersion::BUILD_1_0_2372_0_NOSTEAM:
+			return getGlobalPtr(2464920);
 		}
 		break;	
 	
